@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  */
 public class Codigo {
 
-    protected Instances projectDataWeka(List<DiscreteVariable> variables, Instances dataWeka) throws Exception{
+    public Instances projectDataWeka(List<DiscreteVariable> variables, Instances dataWeka) throws Exception{
         List<String> projectionVariablesNames = variables.stream().map(DiscreteVariable::getName).collect(Collectors.toList());
 
         /** Definimos los parametros de filter utilizado */
@@ -38,7 +38,7 @@ public class Codigo {
         return projectedDataWeka;
     }
 
-    protected DiscreteBayesNet learnBnUsingWeka(List<DiscreteVariable> variables, Instances dataWeka) throws Exception{
+    public DiscreteBayesNet learnBnUsingWeka(List<DiscreteVariable> variables, Instances dataWeka) throws Exception{
 
         // Project dataWeka to the 'variables' space
         Instances projectedDataWeka = projectDataWeka(variables, dataWeka);
