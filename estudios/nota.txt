@@ -1,0 +1,4 @@
+Esta carpeta es temporal, los resultados de los estudios deberian almacenarse en Google Drive, donde se acompañaran
+de las imagenes, DOT y XDSL files correspondientes a cada red para un estudio mas especifico
+
+TODO: Habria que ejecutar los estudios 5 veces para obtener la media de los tiempos y el mejor modelo posible, sobretodo con el EM

@@ -1,0 +1,5 @@
+Una vez tenemos el OLCM aprendido para el numero de particiones que hemos escogido, aun nos quedan los procesos de
+ - Evaluacion: Comprobar que se ha mejorado la distancia de Hellinger (no es necesario realmente)
+ - Intepretacion:
+    Completar los datos a partir de nuestro modelo OLCM
+    Aprender una red Bayesiana con los datos completos entre las variables de cluster para observar sus dependencias cond
