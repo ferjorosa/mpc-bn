@@ -28,6 +28,8 @@ import java.util.*;
 /**
  * - Exporta el LCM asociado a cada una de las facetas escogidas
  * - Exporta la matriz NID entre cada par de facetas escogidas
+ * TODO: tiempos de ejecucion
+ * TODO: Exportar MBs?
  */
 public class AttributeClusteringScript {
 
@@ -46,7 +48,7 @@ public class AttributeClusteringScript {
         String beeps2013 = "articulo/data/real/beeps/beeps2013_sampled_training_updated.arff";
 
         // Condiciones_vida
-        String condiciones_vida = "articulo/data/real/condiciones_vida/condiciones_vida_2016_training.arff";
+        String condiciones_vida = "estudios/condiciones_vida/data/condiciones_vida_2016_training.arff";
 
         // MENA - Egypt 2013
         String egypt2013 = "articulo/data/real/mena-egypt/Egypt_1927_training.arff";
@@ -63,6 +65,8 @@ public class AttributeClusteringScript {
         /** Load Voltric data */
         DiscreteData dataVoltric = DataFileLoader.loadDiscreteData(dataString);
 
+        double nbTimeStart = System.currentTimeMillis();
+
         /** Facets generated from a loaded BN */
         DiscreteBayesNet loadedBn = XmlBifReader.processFile(new File("estudios/condiciones_vida/condiciones_vida_2016.xml"));
         List<DataFacet> facets = codigo.facetDeterminationWithMarkovBlanket(loadedBn);
@@ -71,40 +75,45 @@ public class AttributeClusteringScript {
         /** LCMs genearated from the filtered list of facets */
         DiscreteParameterLearning em = new ParallelEM(new EmConfig(), ScoreType.BIC);
         for(DataFacet facet: nonRepeatedDataFacets){
-            LearningResult<DiscreteBayesNet> lcmResult = HiddenNaiveBayes.learnModel(20, dataVoltric, em, 1e-4);
+            LearningResult<DiscreteBayesNet> lcmResult = HiddenNaiveBayes.learnModel(20, dataVoltric.project(facet.getVariables()), em, 1e-4);
 
             // Export model in BIF 0.15 format
-            OutputStream nbOutput = new FileOutputStream("estudios/"+dataName+"/facet_lcm/"+facet.getVariables().get(0).getName()+".bif");
+            OutputStream nbOutput = new FileOutputStream("estudios/"+dataName+"/facets/lcm/"+facet.getVariables().get(0).getName()+".bif");
             BnLearnBifFileWriter writer = new BnLearnBifFileWriter(nbOutput);
             writer.write(lcmResult.getBayesianNetwork());
 
             // Export model in OBIF format
-            OldBifFileWriter.writeBif("estudios/"+dataName+"/facets/lcm/"+facet.getVariables().get(0).getName()+".bif", lcmResult.getBayesianNetwork());
+            OldBifFileWriter.writeBif("estudios/"+dataName+"/facets/lcm/"+facet.getVariables().get(0).getName()+".obif", lcmResult.getBayesianNetwork());
         }
 
         /** Matrix with NID between facets */
-        double[][] nidMatrix = new double[facets.size()][facets.size()];
-        for(int i=0; i < facets.size(); i++)
-            for(int j=0; j < facets.size(); j++)
+        double[][] nidMatrix = new double[nonRepeatedDataFacets.size()][nonRepeatedDataFacets.size()];
+        for(int i=0; i < nonRepeatedDataFacets.size(); i++)
+            for(int j=0; j < nonRepeatedDataFacets.size(); j++)
                 nidMatrix[i][j] = 0;
 
-        for(int i=0; i < facets.size(); i++)
-            for(int j=0; j < facets.size(); j++)
-                if(!facets.get(i).equals(facets.get(j))){
+        for(int i=0; i < nonRepeatedDataFacets.size(); i++)
+            for(int j=0; j < nonRepeatedDataFacets.size(); j++)
+                if(!nonRepeatedDataFacets.get(i).equals(nonRepeatedDataFacets.get(j))){
                     // Each pair of facets creates a combined BN
                     Set<DiscreteVariable> nonRepeatedVariables = new LinkedHashSet<>();
-                    nonRepeatedVariables.addAll(facets.get(i).getVariables());
-                    nonRepeatedVariables.addAll(facets.get(j).getVariables());
+                    nonRepeatedVariables.addAll(nonRepeatedDataFacets.get(i).getVariables());
+                    nonRepeatedVariables.addAll(nonRepeatedDataFacets.get(j).getVariables());
                     List<DiscreteVariable> nonRepeatedVariablesList = new ArrayList<>(nonRepeatedVariables);
                     DiscreteBayesNet combinedBn = loadOrLearnCombinedFacetBn(nonRepeatedVariablesList, dataWeka);
 
                     // The distance between each pair is calculated
-                    double nid = NID.calculate(facets.get(i).getBayesNet(), facets.get(j).getBayesNet(), combinedBn);
+                    double nid = NID.calculate(nonRepeatedDataFacets.get(i).getBayesNet(), nonRepeatedDataFacets.get(j).getBayesNet(), combinedBn);
                     nidMatrix[i][j] = nid;
                 }
 
         // Export generated matrix in CSV format
         ExportMatrixCSV.export("estudios/"+dataName+"/facets/lcm/nidMatrix.csv", nidMatrix);
+
+        double nbTimeEnd = System.currentTimeMillis();
+        double time = nbTimeEnd - nbTimeStart;
+
+        System.out.println("Attribute clustering execution time: " + time);
     }
 
     /** Filtramos aquellas que estan compuestas por una única variable o estan repetidas */
