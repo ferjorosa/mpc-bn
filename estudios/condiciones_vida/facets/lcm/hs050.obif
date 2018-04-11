@@ -1,0 +1,40 @@
+// estudios/condiciones_vida/facets/lcm/hs050.obif
+// Produced at Mon Apr 09 19:42:46 CEST 2018
+network "LCM" {
+}
+
+variable "MV_hs050" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_hh050" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_h80_u" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_hs040" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "LV_variable239" {
+	type discrete[3] { "state0" "state1" "state2" };
+}
+
+probability ( "MV_hs050" | "LV_variable239" ) {
+	table 0.449795102313198 0.9986669825171998 0.9843228387413434 0.5502048976868019 0.0013330174828001039 0.015677161258656522;
+}
+probability ( "MV_hh050" | "LV_variable239" ) {
+	table 0.11168768246343388 0.981781183501807 0.837082188189412 0.888312317536566 0.01821881649819295 0.16291781181058793;
+}
+probability ( "MV_h80_u" | "LV_variable239" ) {
+	table 0.3168493379333458 0.0019154842807343902 0.05397313335595938 0.6831506620666542 0.9980845157192656 0.9460268666440406;
+}
+probability ( "MV_hs040" | "LV_variable239" ) {
+	table 0.07550053602564856 0.8892195821846863 0.04900452331884886 0.9244994639743513 0.11078041781531364 0.9509954766811511;
+}
+probability ( "LV_variable239"  ) {
+	table 0.03841648671217756 0.6841529621887327 0.27743055109908976;
+}

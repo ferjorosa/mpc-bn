@@ -1,0 +1,29 @@
+network LCM {
+}
+
+variable variable128 {
+	type discrete[2] { state0, state1 };
+}
+
+variable hh081 {
+	type discrete[3] { 1, 2, 3 };
+}
+
+variable hh091 {
+	type discrete[3] { 1, 2, 3 };
+}
+
+probability ( variable128 ) {
+	table 0.004183783355246091, 0.995816216644754;
+}
+
+probability ( hh081 | variable128 ) {
+	(state0) 0.022025708850629284, 0.3912678311253019, 0.5867064600240689;
+	(state1) 0.9994327751051533, 7.080583687465704E-5, 4.964190579720463E-4;
+}
+
+probability ( hh091 | variable128 ) {
+	(state0) 0.03313566795342558, 0.3912678311253018, 0.5755965009212726;
+	(state1) 0.9998092906196618, 7.080583687465704E-5, 1.1990354346339913E-4;
+}
+

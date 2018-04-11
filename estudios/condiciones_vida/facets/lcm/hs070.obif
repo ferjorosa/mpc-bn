@@ -1,0 +1,26 @@
+// estudios/condiciones_vida/facets/lcm/hs070.obif
+// Produced at Mon Apr 09 19:59:10 CEST 2018
+network "LCM" {
+}
+
+variable "LV_variable341" {
+	type discrete[2] { "state0" "state1" };
+}
+
+variable "MV_hs070" {
+	type discrete[3] { "1" "2" "3" };
+}
+
+variable "MV_hs090" {
+	type discrete[3] { "1" "2" "3" };
+}
+
+probability ( "LV_variable341"  ) {
+	table 0.9811760716455924 0.018823928354407604;
+}
+probability ( "MV_hs070" | "LV_variable341" ) {
+	table 0.9960767890765898 0.51149981217408 7.325996806900827E-4 0.08106060301003246 0.00319061124272004 0.4074395848158875;
+}
+probability ( "MV_hs090" | "LV_variable341" ) {
+	table 0.700472450677604 0.10339165805922661 0.05428074492344141 0.1506414162385095 0.24524680439895463 0.7459669257022639;
+}

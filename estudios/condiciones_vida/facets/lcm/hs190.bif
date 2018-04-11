@@ -1,0 +1,47 @@
+network LCM {
+}
+
+variable variable175 {
+	type discrete[2] { state0, state1 };
+}
+
+variable hs170 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hs180 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hs190 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hh040 {
+	type discrete[2] { 1, 2 };
+}
+
+probability ( variable175 ) {
+	table 0.1495538680227831, 0.8504461319772169;
+}
+
+probability ( hs170 | variable175 ) {
+	(state0) 0.6283424915740666, 0.3716575084259334;
+	(state1) 0.07117541028331102, 0.928824589716689;
+}
+
+probability ( hs180 | variable175 ) {
+	(state0) 0.5089169250909836, 0.4910830749090164;
+	(state1) 0.024124918594644135, 0.975875081405356;
+}
+
+probability ( hs190 | variable175 ) {
+	(state0) 0.4246011345618506, 0.5753988654381494;
+	(state1) 0.046584604293413844, 0.9534153957065862;
+}
+
+probability ( hh040 | variable175 ) {
+	(state0) 0.33829670228316144, 0.6617032977168386;
+	(state1) 0.11399377587383971, 0.8860062241261604;
+}
+
