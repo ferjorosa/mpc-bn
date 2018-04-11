@@ -41,12 +41,11 @@ Mi idea actual es que existan varios scripts y que el proceso se realice en part
         - El archivo de datos en formato ARFF
     Output:
         - Los MBs de las facetas escogidas
-        - La matriz en formato CSV de la NID entre facetas
         - Los LCMs de las facetas escogidas
 
   2) Grouping facets
     Input
-        - La matriz en formato CSV de la NID entre facetas
+        - Las facetas filtradas
     Output
         - HClust image
         - Un archivo donde se especifica a que grupo pertenece cada faceta

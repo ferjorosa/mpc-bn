@@ -73,7 +73,7 @@ public class AttributeClusteringScript {
         List<DataFacet> nonRepeatedDataFacets = filterDataFacets(facets);
 
         /** LCMs genearated from the filtered list of facets */
-        DiscreteParameterLearning em = new ParallelEM(new EmConfig(), ScoreType.BIC);
+        /*DiscreteParameterLearning em = new ParallelEM(new EmConfig(), ScoreType.BIC);
         for(DataFacet facet: nonRepeatedDataFacets){
             LearningResult<DiscreteBayesNet> lcmResult = HiddenNaiveBayes.learnModel(20, dataVoltric.project(facet.getVariables()), em, 1e-4);
 
@@ -85,7 +85,7 @@ public class AttributeClusteringScript {
             // Export model in OBIF format
             OldBifFileWriter.writeBif("estudios/"+dataName+"/facets/lcm/"+facet.getVariables().get(0).getName()+".obif", lcmResult.getBayesianNetwork());
         }
-
+*/
         /** Matrix with NID between facets */
         double[][] nidMatrix = new double[nonRepeatedDataFacets.size()][nonRepeatedDataFacets.size()];
         for(int i=0; i < nonRepeatedDataFacets.size(); i++)
