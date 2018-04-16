@@ -35,7 +35,7 @@ public class GeneralHillClimbing implements DiscreteStructureLearning{
      * @param parameterLearning
      * @return
      */
-    //TODO: Nota: En principio no hago comprobaciones de que la black
+    //TODO: Nota: En principio no hago comprobaciones de que la black list
     public LearningResult<DiscreteBayesNet> learnModel(DiscreteBayesNet seedNet, DiscreteData data, DiscreteParameterLearning parameterLearning){
 
         LearningResult<DiscreteBayesNet> previousNetResult = parameterLearning.learnModel(seedNet.clone(), data);

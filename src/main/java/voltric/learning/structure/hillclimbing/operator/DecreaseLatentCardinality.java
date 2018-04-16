@@ -65,7 +65,7 @@ public class DecreaseLatentCardinality implements HcOperator {
 
                 clonedNet = clonedNet.decreaseCardinality(latentVar, 1);
 
-                // After the LV has increased its cardinality, the resulting model is learned. If its score is improved,
+                // After the LV has decreased its cardinality, the resulting model is learned. If its score is improved,
                 // the LV is stored
                 double newScore = parameterLearning.learnModel(clonedNet, data).getScoreValue();
                 if (newScore > bestScore) {
@@ -74,7 +74,7 @@ public class DecreaseLatentCardinality implements HcOperator {
                 }
 
                 // Independently, the cardinality is reversed for the next iteration to have the initial BN
-                clonedNet = clonedNet.decreaseCardinality(clonedNet.getLatentVariable(latentVar.getName()), 1);
+                clonedNet = clonedNet.increaseCardinality(clonedNet.getLatentVariable(latentVar.getName()), 1);
             }
         }
 

@@ -35,7 +35,7 @@ public class HiddenNaiveBayes {
         // First the initial model is created
         HLCM initialModel = HlcmCreator.createLCM(dataSet.getVariables(), 2);
 
-        // A hill-climbing search process is applied where only the IncreaseLatentCardinality operator is used
+        // A hill-climbing search process is applied where only the IncreaseOlcmCard operator is used
         IncreaseLatentCardinality ilcOperator = new IncreaseLatentCardinality(maxCardinality);
         Set<HcOperator> operatorSet = new HashSet<>();
         operatorSet.add(ilcOperator);
