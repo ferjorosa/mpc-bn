@@ -1,6 +1,8 @@
 /**
  * Created by equipo on 09/04/2018.
  * TODO: Ojo con las facetas descartas. El tamaño del vector "groups" es igual al numero de facets que puede ser inferior al de variables en el dataset
+ *
+ * TODO: Deberiamos mirar si el numero de grupos escogidos es el adecuado por ejemplo mirando que la NID con la mejor faceta de otro no pase un threshold
  */
 public class SelectFacetScript {
 
@@ -12,6 +14,8 @@ public class SelectFacetScript {
         // Despues calculamos la distancia media de Hellinger para el LCM asociado a cada una de las facetas
 
         // Escogemos de cada grupo de facetas aquella que tiene una distancia media de Hellinger mas alta
+
+        // ???
 
         // Las almacenamos ya que formaran la estructura base del OLCM final
     }
