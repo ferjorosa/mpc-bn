@@ -15,6 +15,8 @@ import voltric.variables.modelTypes.VariableType;
  *
  * Esta mal, asi no se obtiene la entropia factorizada de una BN, es necesario utilizar factorizacion + inferencia para obtener
  * las JPDs de las variables en cuestion
+ *
+ * TODO: Nota 17-04-2018: La entropia factorizada no se calcula de esta manera, por eso da error
  */
 public class FactorizedEntropyProblem {
 
