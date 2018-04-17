@@ -1,0 +1,103 @@
+network Discrete_Bayesian_network {
+}
+
+variable c1 {
+	type discrete[3] { state0, state1, state2 };
+}
+
+variable c2 {
+	type discrete[2] { state0, state1 };
+}
+
+variable mv1 {
+	type discrete[2] { state0, state1 };
+}
+
+variable mv2 {
+	type discrete[2] { state0, state1 };
+}
+
+variable mv3 {
+	type discrete[2] { state0, state1 };
+}
+
+variable mv4 {
+	type discrete[2] { state0, state1 };
+}
+
+variable mv5 {
+	type discrete[2] { state0, state1 };
+}
+
+variable mv6 {
+	type discrete[2] { state0, state1 };
+}
+
+variable mv7 {
+	type discrete[2] { state0, state1 };
+}
+
+variable mv8 {
+	type discrete[2] { state0, state1 };
+}
+
+probability ( c1 ) {
+	table 0.3919444512789833, 0.376176193960575, 0.2318793547604416;
+}
+
+probability ( c2 ) {
+	table 0.03984895107396084, 0.9601510489260392;
+}
+
+probability ( mv1 | c1 ) {
+	(state0) 0.476578496911941, 0.5234215030880589;
+	(state1) 0.507973840022486, 0.49202615997751403;
+	(state2) 0.4321877950560167, 0.5678122049439833;
+}
+
+probability ( mv2 | c1 ) {
+	(state0) 0.48243759296243055, 0.5175624070375694;
+	(state1) 0.42218002097175805, 0.5778199790282419;
+	(state2) 0.37459171095532745, 0.6254082890446726;
+}
+
+probability ( mv3 | c1 ) {
+	(state0) 0.38920783215990384, 0.6107921678400962;
+	(state1) 0.2964773943213469, 0.7035226056786531;
+	(state2) 0.6636099036054048, 0.3363900963945952;
+}
+
+probability ( mv4 | c1 ) {
+	(state0) 0.9069335389994985, 0.0930664610005015;
+	(state1) 0.15282644960789285, 0.8471735503921072;
+	(state2) 0.4561785195529064, 0.5438214804470936;
+}
+
+probability ( mv5 | c1, c2 ) {
+	(state0, state0) 0.16583003497357074, 0.8341699650264293;
+	(state0, state1) 0.6603940918313268, 0.3396059081686732;
+	(state1, state0) 0.745935717078099, 0.254064282921901;
+	(state1, state1) 0.4704691090202012, 0.5295308909797988;
+	(state2, state0) 0.337956396334555, 0.662043603665445;
+	(state2, state1) 0.3846007353188301, 0.6153992646811699;
+}
+
+probability ( mv6 | c1, c2 ) {
+	(state0, state0) 0.2220117039541155, 0.7779882960458845;
+	(state0, state1) 0.5639899183177332, 0.4360100816822669;
+	(state1, state0) 0.4057864560762438, 0.5942135439237562;
+	(state1, state1) 0.22346286079034122, 0.7765371392096588;
+	(state2, state0) 0.31054669327203205, 0.6894533067279679;
+	(state2, state1) 0.29461655136536163, 0.7053834486346384;
+}
+
+probability ( mv7 | c2 ) {
+	(state0) 0.547687804421055, 0.4523121955789449;
+	(state1) 0.49842601828018057, 0.5015739817198194;
+}
+
+probability ( mv8 | c2 ) {
+	(state0) 0.2439639372929553, 0.7560360627070447;
+	(state1) 0.45256420149690857, 0.5474357985030914;
+}
+
