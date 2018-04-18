@@ -1,4 +1,4 @@
-package articulo.scripts.simulatebn;
+package articulo.scripts.syntheticbn;
 
 import voltric.io.model.bif.BnLearnBifFileWriter;
 import voltric.io.model.bif.OldBifFileWriter;
