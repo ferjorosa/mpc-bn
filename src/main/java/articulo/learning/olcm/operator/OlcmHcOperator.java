@@ -1,4 +1,4 @@
-package articulo.olcm.learning.operator;
+package articulo.learning.olcm.operator;
 
 import voltric.data.DiscreteData;
 import voltric.learning.LearningResult;

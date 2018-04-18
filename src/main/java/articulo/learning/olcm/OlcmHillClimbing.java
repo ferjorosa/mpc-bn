@@ -1,4 +1,4 @@
-package articulo.olcm.learning;
+package articulo.learning.olcm;
 
 import articulo.olcm.learning.operator.OlcmHcOperator;
 import voltric.data.DiscreteData;
@@ -6,7 +6,6 @@ import voltric.io.model.bif.BnLearnBifFileWriter;
 import voltric.io.model.bif.OldBifFileWriter;
 import voltric.learning.LearningResult;
 import voltric.learning.parameter.em.AbstractEM;
-import voltric.learning.parameter.em.ParallelEM;
 import voltric.model.DiscreteBayesNet;
 
 import java.io.FileOutputStream;
@@ -39,8 +38,14 @@ public class OlcmHillClimbing  {
     private double threshold;
 
     public OlcmHillClimbing(int maxIterations, double threshold){
+        /** Expansion Operators */
         this.expansionOperators = new HashSet<>();
+
+
+        /** Simplification Operators */
         this.simplificationOperators = new HashSet<>();
+
+
         this.maxIterations = maxIterations;
         this.threshold = threshold;
     }
