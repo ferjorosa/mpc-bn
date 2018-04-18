@@ -1,0 +1,35 @@
+Definimos varias variantes del algoritmo
+
+1) Version simple con 4 operadores:
+ - Añadir arco
+ - Eliminar arco
+ - Aumentar cardinalidad
+ - Disminuir cardinalidad
+
+ Esta version puede ser organizada de varias maneras:
+
+  - De forma directa donde se consideran todos los operadores a la vez
+  - De forma dividida donde se considera primero un proceso incremento de la estructura y depsues un proceso de simplificacion
+
+2) Version avanzada con 6 operadores:
+
+ - Añadir arco
+ - Eliminar arco
+ - Aumentar cardinalidad
+ - Disminuir cardinalidad
+ - Añadir nodo
+ - Eliminar nodo
+
+ TODO: Nota: Es necesario investigar como funcionaria el addNode operator. ¿Deberia añadir entre cualquier par de nodos o solo aquellos que no se repitan en una particion?
+
+ Esta version puede ser organizada de varias maneras:
+
+  - De forma directa donde se consideran todos los operadores a la vez
+  - De forma dividida donde se considera primero un proceso incremento de la estructura y depsues un proceso de simplificacion
+  - De forma dividida donde ademas se separan los operadores de cardinalidad de aquellos operadores de estructura
+
+***** APUNTES *****
+
+Ambas versiones dependen en gran medida de la estructura de inicio que se haya escogido. Las dos mas comunes son:
+ - LCM
+ - Multiple independent LCM
