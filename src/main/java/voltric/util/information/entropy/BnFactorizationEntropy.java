@@ -38,7 +38,7 @@ public class BnFactorizationEntropy {
                 Function parentJoint = cliqueTreePropagation.computeBelief(node.getDiscreteParentVariables());
                 entropies += compute(node.getVariable(), cpt, parentJoint);
             } else
-                entropies += compute(cpt);
+                entropies += JointDistributionEntropy.compute(cpt);
         }
 
         return entropies;
@@ -52,7 +52,7 @@ public class BnFactorizationEntropy {
 
         for(DiscreteVariable variable: bayesNet.getVariables()) {
             Function marginal = cliqueTreePropagation.computeBelief(variable);
-            sumOfIndividualEntropies += compute(marginal);
+            sumOfIndividualEntropies += JointDistributionEntropy.compute(marginal);
         }
 
         return sumOfIndividualEntropies;
@@ -112,34 +112,5 @@ public class BnFactorizationEntropy {
         }
 
         return -condEntropy;
-    }
-
-    /**
-     * Returns the entropy of the specified joint/marginal distribution.
-     *
-     *  - \sum_{y \in Y} P(y|x) log(P(y|x))
-     *
-     * @param dist the joint/marginal distribution whose entropy is to be computed.
-     * @return the entropy of the specified joint/marginal distribution.
-     */
-    private static double compute(Function dist) {
-
-        // ensure the distribution probabilities sum up to one
-        /*if(!Utils.eqDouble(dist.sumUp(), 1.0, 0.0001))
-            throw new IllegalArgumentException("The argument distribution's probabilities must sum up to 1.0");*/
-
-        if(dist.getDimension() == 0)
-            return 0;
-
-        // H(X) = - sum_X P(X) log P(X)
-        double ent = 0.0;
-        for (double cell : dist.getCells()) {
-            // if P(x) = 0, skip this term
-            if (cell != 0.0) {
-                ent += cell * Math.log(cell);
-            }
-        }
-
-        return -ent;
     }
 }
