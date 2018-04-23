@@ -43,9 +43,7 @@ public class HLCM extends DiscreteBayesNet implements LatentTreeModel {
     @Override
     public DiscreteBeliefNode getRoot() {
 
-        List<DiscreteBeliefNode> allNodes = this.getNodes().stream().map(x -> (DiscreteBeliefNode) x).collect(Collectors.toList());
-
-        List<DiscreteBeliefNode> roots = allNodes.stream().filter(x -> x.isRoot()).collect(Collectors.toList());
+        List<DiscreteBeliefNode> roots = this.getLatentNodes().stream().filter(x -> x.isRoot()).collect(Collectors.toList());
 
         // TODO: Do checks with Tests and remove this type of error handling
         if (roots.size() > 1)
