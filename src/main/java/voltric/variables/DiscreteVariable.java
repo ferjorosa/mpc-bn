@@ -164,7 +164,7 @@ public class DiscreteVariable extends Variable {
     @Override
     public int hashCode() {
         // the index doesn't go into the hashcode because is not an unique ID, it is just a general property
-        return new HashCodeBuilder(29, 709)
+         return new HashCodeBuilder(29, 709)
                 .append(name)
                 .append(type)
                 .append(states)

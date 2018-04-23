@@ -21,6 +21,7 @@ Definimos varias variantes del algoritmo
  - Eliminar nodo
 
  TODO: Nota: Es necesario investigar como funcionaria el addNode operator. ¿Deberia añadir entre cualquier par de nodos o solo aquellos que no se repitan en una particion?
+ TODO: Nota: Si el de 4 funciona bien pero el de 6 mejor, publicar solo el de 4 y darle mas caña al de 6 para un articulo mas grande
 
  Esta version puede ser organizada de varias maneras:
 
