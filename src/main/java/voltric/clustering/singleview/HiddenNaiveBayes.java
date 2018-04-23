@@ -35,6 +35,14 @@ public class HiddenNaiveBayes {
         // First the initial model is created
         HLCM initialModel = HlcmCreator.createLCM(dataSet.getVariables(), 2);
 
+        return learnModel(maxCardinality, dataSet, parameterLearning, threshold, initialModel);
+    }
+
+    public static LearningResult<DiscreteBayesNet> learnModel(int maxCardinality,
+                                                              DiscreteData dataSet,
+                                                              DiscreteParameterLearning parameterLearning,
+                                                              double threshold,
+                                                              HLCM initialModel) {
         // A hill-climbing search process is applied where only the IncreaseOlcmCard operator is used
         IncreaseLatentCardinality ilcOperator = new IncreaseLatentCardinality(maxCardinality);
         Set<HcOperator> operatorSet = new HashSet<>();
