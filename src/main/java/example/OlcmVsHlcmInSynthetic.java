@@ -1,5 +1,6 @@
 package example;
 
+import voltric.clustering.singleview.HiddenNaiveBayes;
 import voltric.data.DiscreteData;
 import voltric.io.data.DataFileLoader;
 import voltric.learning.LearningResult;
@@ -23,6 +24,10 @@ import java.util.List;
  *
  * El proceso es simple, aprendemos el modelo o modelos que queramos, ya sea con EM, SEM full-OLCM
  * Despues comparamos el score/scores con los obtenidos por otros metodos como son el BI; EAST; MIM deAsbeh & Lerner
+ *
+ * Resultados con 100000 instancias: para el ejmplo de 8 vars obtenemos el mismo valor porque la estructura OLCM es
+ * equivalente a la estructura LCM con 3 estados, por lo que quedan en igualdad de condiciones, pero no existen multiples
+ * particiones en la distribucion, o al menos se puede representar sin multiples particiones.
  */
 public class OlcmVsHlcmInSynthetic {
 
@@ -30,12 +35,11 @@ public class OlcmVsHlcmInSynthetic {
 
         // Cargamos los datos
 
-        String olcm_8MVs_1000 = "estudios/synthetic/8MVs/data/olcm8MVs_1000.arff";
-        String olcm_8MVs_5000 = "estudios/synthetic/8MVs/data/olcm8MVs_5000.arff";
-        String olcm_8MVs_10000 = "estudios/synthetic/8MVs/data/olcm8MVs_10000.arff";
+        String olcm_8MVs_100000_withclass = "estudios/synthetic/8MVs/data/olcm8MVs_100000_withclass.arff";
+        String olcm_8MVs_100000 = "estudios/synthetic/8MVs/data/olcm8MVs_100000.arff";
 
-        String dataString = olcm_8MVs_1000;
-        String dataName = "olcm_8MVs_1000";
+        String dataString = olcm_8MVs_100000_withclass;
+        String dataName = "olcm_8MVs_100000_withclass";
 
         /** Load Weka data */
         ArffLoader loader = new ArffLoader();
@@ -52,6 +56,11 @@ public class OlcmVsHlcmInSynthetic {
         LearningResult<DiscreteBayesNet> olcmPerfectStructResult = em.learnModel(olcmPerfectStruct, dataVoltric);
 
         System.out.println("Score BIC: " + olcmPerfectStructResult.getScoreValue());
+
+        DiscreteData data = DataFileLoader.loadDiscreteData(olcm_8MVs_100000);
+        LearningResult<DiscreteBayesNet> lcm = HiddenNaiveBayes.learnModel(5, data, em, 0.5);
+        System.out.println(lcm.toString());
+        System.out.println(lcm.getScoreValue());
     }
 
     private static DiscreteBayesNet construct8MVs2LVs(DiscreteData data) {
