@@ -1,11 +1,12 @@
-package articulo.learning.olcm;
+package articulo.learning;
 
-import articulo.olcm.learning.operator.OlcmHcOperator;
+import articulo.learning.olcm.operator.*;
 import voltric.data.DiscreteData;
 import voltric.io.model.bif.BnLearnBifFileWriter;
 import voltric.io.model.bif.OldBifFileWriter;
 import voltric.learning.LearningResult;
 import voltric.learning.parameter.em.AbstractEM;
+import voltric.learning.structure.hillclimbing.operator.HcOperator;
 import voltric.model.DiscreteBayesNet;
 
 import java.io.FileOutputStream;
@@ -27,7 +28,7 @@ import java.util.Set;
  * 1 - Un LCM
  * 2 - Una version OLCM sin overlapping y como el overlapping mejora la estructura
  */
-public class OlcmHillClimbing  {
+public class OlcmHillClimbing {
 
     private Set<OlcmHcOperator> expansionOperators;
 
@@ -37,14 +38,15 @@ public class OlcmHillClimbing  {
 
     private double threshold;
 
-    public OlcmHillClimbing(int maxIterations, double threshold){
+    public OlcmHillClimbing(int maxIterations,
+                            double threshold,
+                            Set<OlcmHcOperator> expansionOperators,
+                            Set<OlcmHcOperator> simplificationOperators){
         /** Expansion Operators */
-        this.expansionOperators = new HashSet<>();
-
+        this.expansionOperators =expansionOperators;
 
         /** Simplification Operators */
-        this.simplificationOperators = new HashSet<>();
-
+        this.simplificationOperators =simplificationOperators;
 
         this.maxIterations = maxIterations;
         this.threshold = threshold;
@@ -59,13 +61,16 @@ public class OlcmHillClimbing  {
         // Bucle general que itera por las fases de expansin y simplificacion
         while(iterations < this.maxIterations) {
             iterations = iterations + 1;
-            System.out.println("iterations: "+ iterations);
+            System.out.println("iterations ("+ iterations + ") score: " + previousIterationResult.getScoreValue());
 
             /** Store current model in case it is needed afterwards */
             storeModel(previousIterationResult.getBayesianNetwork(), dataName, iterations);
 
             /** Expansion process */
             LearningResult<DiscreteBayesNet> expansionBestResult = expansionProcess(previousIterationResult, data, em);
+
+            // Store expansion model
+            storeIntermidiateModel(expansionBestResult.getBayesianNetwork(), dataName, "expansion", iterations);
 
             // If the expansion process haven't increased the score, we stop the HC algorithm
             if(previousIterationResult.getScoreValue() >= expansionBestResult.getScoreValue()
@@ -74,6 +79,9 @@ public class OlcmHillClimbing  {
 
             /** Simplification process */
             LearningResult<DiscreteBayesNet> simplificationBestResult = simplificationProcess(expansionBestResult, data, em);
+
+            // Store simplification model
+            storeIntermidiateModel(expansionBestResult.getBayesianNetwork(), dataName, "simplification", iterations);
 
             // If the simplification process haven't increased the score, we stop the HC algorithm
             if(expansionBestResult.getScoreValue() >= simplificationBestResult.getScoreValue()
@@ -94,6 +102,8 @@ public class OlcmHillClimbing  {
         LearningResult<DiscreteBayesNet> previousResult;
 
         do {
+            System.out.println("Expansion score: " + expansionBestResult.getScoreValue());
+
             previousResult = expansionBestResult;
             for (OlcmHcOperator operator : this.expansionOperators) {
                 LearningResult<DiscreteBayesNet> expansionResult = operator.apply(expansionBestResult.getBayesianNetwork(), data, em);
@@ -112,6 +122,8 @@ public class OlcmHillClimbing  {
         LearningResult<DiscreteBayesNet> previousResult;
 
         do {
+            System.out.println("Simplification score: " + simplificationBestResult.getScoreValue());
+
             previousResult = simplificationBestResult;
             for (OlcmHcOperator operator : this.simplificationOperators) {
                 LearningResult<DiscreteBayesNet> simplificationResult = operator.apply(simplificationBestResult.getBayesianNetwork(), data, em);
@@ -132,5 +144,15 @@ public class OlcmHillClimbing  {
 
         // Export model in OBIF format
         OldBifFileWriter.writeBif("estudios/"+dataName+"/olcmHC/olcm_iter_"+iterationNumber+".obif", model);
+    }
+
+    private void storeIntermidiateModel(DiscreteBayesNet model, String dataName, String process, int iterationNumber) throws Exception{
+        // Export model in BIF 0.15 format
+        OutputStream nbOutput = new FileOutputStream("estudios/"+dataName+"/olcmHC/intermidiate/olcm_"+process+"_iter_"+iterationNumber+".bif");
+        BnLearnBifFileWriter writer = new BnLearnBifFileWriter(nbOutput);
+        writer.write(model);
+
+        // Export model in OBIF format
+        OldBifFileWriter.writeBif("estudios/"+dataName+"/olcmHC/intermidiate/olcm_"+process+"_iter_"+iterationNumber+".obif", model);
     }
 }
