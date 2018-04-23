@@ -20,10 +20,9 @@ public class IncreaseOlcmCard implements OlcmHcOperator{
     /**
      * Main constructor.
      *
-     * @param blackList The set of nodes that need to be avoided in the structure search process.
      * @param maxCardinality The maximum allowed cardinality value.
      */
-    public IncreaseOlcmCard(List<Variable> blackList, int maxCardinality){
+    public IncreaseOlcmCard(int maxCardinality){
         this.maxCardinality = maxCardinality;
     }
 
