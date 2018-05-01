@@ -1,0 +1,124 @@
+// estudios/synthetic/15MVs_v1/olcmHC/olcm_iter_1.obif
+// Produced at Tue Apr 24 13:05:25 CEST 2018
+network "olcm - egypt_15_v1" {
+}
+
+variable "MV_bank" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_nonbank" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_other" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_k15d" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_k3" {
+	type discrete[6] { "1" "2" "3" "4" "5" "6" };
+}
+
+variable "MV_h1" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_h5" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_h3" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_h4a" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_a7a" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_k4" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_mnaf3" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_mnak4a" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_mnaq53" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_e6" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "LV_variable16" {
+	type discrete[2] { "state0" "state1" };
+}
+
+variable "LV_variable104" {
+	type discrete[2] { "state0" "state1" };
+}
+
+probability ( "MV_bank" | "LV_variable16" ) {
+	table 0.0825131469913993 0.9931534631189419 0.9174868530086007 0.00684653688105815;
+}
+probability ( "MV_nonbank" | "LV_variable16" ) {
+	table 0.006068398328292487 0.9639882479132817 0.9939316016717076 0.03601175208671828;
+}
+probability ( "MV_other" | "LV_variable16" ) {
+	table 0.08058012069004311 0.9398894983876032 0.9194198793099568 0.060110501612396734;
+}
+probability ( "MV_k15d"  ) {
+	table 0.04510108864696734 0.9548989113530326;
+}
+probability ( "MV_k3"  ) {
+	table 0.8836006207966891 0.016554578375581996 0.008794619762027936 0.002586652871184687 0.06001034661148474 0.028453181583031558;
+}
+probability ( "MV_h1" | "LV_variable104" ) {
+	table 0.11938091432098426 0.6901015106531918 0.8806190856790157 0.3098984893468081;
+}
+probability ( "MV_h5"  ) {
+	table 0.1104199066874028 0.8895800933125972;
+}
+probability ( "MV_h3" | "LV_variable104" ) {
+	table 0.02792786531619084 0.8942864812372925 0.9720721346838092 0.10571351876270747;
+}
+probability ( "MV_h4a" | "LV_variable104" ) {
+	table 0.04244994251250521 0.37001984589221676 0.9575500574874948 0.6299801541077833;
+}
+probability ( "MV_a7a"  ) {
+	table 0.8019699326075687 0.1980300673924313;
+}
+probability ( "MV_k4"  ) {
+	table 0.19543805080352514 0.8045619491964748;
+}
+probability ( "MV_mnaf3"  ) {
+	table 0.7729393468118196 0.22706065318818042;
+}
+probability ( "MV_mnak4a"  ) {
+	table 0.09486780715396578 0.9051321928460342;
+}
+probability ( "MV_mnaq53"  ) {
+	table 0.0383618455158113 0.9616381544841887;
+}
+probability ( "MV_e6"  ) {
+	table 0.07153965785381027 0.9284603421461898;
+}
+probability ( "LV_variable16"  ) {
+	table 0.9170247157171024 0.08297528428289755;
+}
+probability ( "LV_variable104"  ) {
+	table 0.8311369320848895 0.16886306791511052;
+}

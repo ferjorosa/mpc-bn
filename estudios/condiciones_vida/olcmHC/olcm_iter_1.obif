@@ -1,0 +1,96 @@
+// estudios/condiciones_vida/olcmHC/olcm_iter_1.obif
+// Produced at Sun Apr 22 17:50:30 CEST 2018
+network "olcm" {
+}
+
+variable "MV_hs160" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_hs170" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_hs180" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_hs190" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_hh040" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_hs050" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_hs060" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_hh050" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_h79_u" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "MV_h80_u" {
+	type discrete[2] { "1" "2" };
+}
+
+variable "LV_variable145" {
+	type discrete[2] { "state0" "state1" };
+}
+
+variable "LV_variable11" {
+	type discrete[2] { "state0" "state1" };
+}
+
+variable "LV_variable69" {
+	type discrete[2] { "state0" "state1" };
+}
+
+probability ( "MV_hs160" | "LV_variable69" ) {
+	table 0.039533530219277115 0.14849923327643366 0.9604664697807228 0.8515007667235663;
+}
+probability ( "MV_hs170" | "LV_variable145" ) {
+	table 0.03765748315727217 0.6145248538577684 0.9623425168427279 0.38547514614223144;
+}
+probability ( "MV_hs180" | "LV_variable145" ) {
+	table 0.020677845525870625 0.39567510043877957 0.9793221544741294 0.6043248995612205;
+}
+probability ( "MV_hs190"  ) {
+	table 0.10308115349361913 0.8969188465063809;
+}
+probability ( "MV_hh040"  ) {
+	table 0.147500528802087 0.852499471197913;
+}
+probability ( "MV_hs050" | "LV_variable69" ) {
+	table 0.9951960656862638 0.6257769808624349 0.004803934313736265 0.37422301913756506;
+}
+probability ( "MV_hs060" | "LV_variable11" ) {
+	table 0.7188597201212122 0.03227555041747477 0.28114027987878776 0.9677244495825252;
+}
+probability ( "MV_hh050" | "LV_variable69" ) {
+	table 0.9574072544156058 0.1145643234935767 0.042592745584394215 0.8854356765064233;
+}
+probability ( "MV_h79_u" | "LV_variable11" ) {
+	table 0.005020271969857618 0.6231344392540626 0.9949797280301423 0.3768655607459374;
+}
+probability ( "MV_h80_u" | "LV_variable11" ) {
+	table 8.581848105469592E-4 0.2789187053226481 0.999141815189453 0.7210812946773519;
+}
+probability ( "LV_variable145"  ) {
+	table 0.7974443300334183 0.20255566996658173;
+}
+probability ( "LV_variable11"  ) {
+	table 0.9009698042232469 0.09903019577675301;
+}
+probability ( "LV_variable69"  ) {
+	table 0.941695110123116 0.05830488987688405;
+}

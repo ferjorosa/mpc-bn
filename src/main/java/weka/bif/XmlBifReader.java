@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO: Por ahora no permite Latent Variables, habria que incluirlo como una propiedad, pero dado que Weka no trabaja con LVs no es una prioridad.
+ * TODO: Por ahora la unica manera de trabajar con LVs es pasandole un vector de nombres
  */
 public class XmlBifReader {
 
@@ -25,7 +25,20 @@ public class XmlBifReader {
         doc.normalize();
 
         String bnName = buildName(doc, "XML-BIF net from " + file.getName());
-        List<DiscreteVariable> variables = buildVariables(doc);
+        List<DiscreteVariable> variables = buildVariables(doc, new ArrayList<>());
+        DiscreteBayesNet bn = buildStructure(doc, bnName, variables);
+
+        return bn;
+    }
+
+    public static DiscreteBayesNet processFile(File file, List<String> latentVarNames) throws Exception {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setValidating(true);
+        Document doc = factory.newDocumentBuilder().parse(file);
+        doc.normalize();
+
+        String bnName = buildName(doc, "XML-BIF net from " + file.getName());
+        List<DiscreteVariable> variables = buildVariables(doc, latentVarNames);
         DiscreteBayesNet bn = buildStructure(doc, bnName, variables);
 
         return bn;
@@ -39,7 +52,7 @@ public class XmlBifReader {
         doc.normalize();
 
         String bnName = buildName(doc, "XML-BIF net from string");
-        List<DiscreteVariable> variables = buildVariables(doc);
+        List<DiscreteVariable> variables = buildVariables(doc, new ArrayList<>());
         DiscreteBayesNet bn = buildStructure(doc, bnName, variables);
 
         return bn;
@@ -73,7 +86,7 @@ public class XmlBifReader {
      * @param doc DOM document containing BIF document in DOM tree
      * @throws Exception if building fails
      */
-    private static List<DiscreteVariable> buildVariables(Document doc) throws Exception{
+    private static List<DiscreteVariable> buildVariables(Document doc, List<String> latentVarNames) throws Exception{
 
         // Get XML variables
         NodeList nodelist = selectAllVariables(doc);
@@ -108,7 +121,12 @@ public class XmlBifReader {
             }
             String sNodeName = ((CharacterData) (nodelist2.get(0).getFirstChild())).getData();
 
-            DiscreteVariable var = new DiscreteVariable(sNodeName, nomStrings, VariableType.MANIFEST_VARIABLE);
+            DiscreteVariable var = null;
+            if(latentVarNames.contains(sNodeName))
+                var = new DiscreteVariable(sNodeName, nomStrings, VariableType.LATENT_VARIABLE);
+            else
+                var = new DiscreteVariable(sNodeName, nomStrings, VariableType.MANIFEST_VARIABLE);
+
             variables.add(var);
         }
 

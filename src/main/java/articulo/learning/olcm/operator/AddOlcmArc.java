@@ -6,8 +6,11 @@ import voltric.learning.LearningResult;
 import voltric.learning.parameter.em.AbstractEM;
 import voltric.model.DiscreteBayesNet;
 import voltric.model.DiscreteBeliefNode;
+import voltric.variables.DiscreteVariable;
 import voltric.variables.Variable;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -16,6 +19,17 @@ import java.util.stream.Collectors;
  * Adds a non-repeated arc between a LV and a MV, forming a OLCM
  */
 public class AddOlcmArc implements OlcmHcOperator{
+
+    private List<DiscreteVariable> manifestNodeBlackList;
+
+    public AddOlcmArc() {
+        this(new ArrayList<>());
+    }
+
+    // No se permiten arcos a los nodos de la blackList
+    public AddOlcmArc(List<DiscreteVariable> manifestNodeBlackList) {
+        this.manifestNodeBlackList = manifestNodeBlackList;
+    }
 
     @Override
     public LearningResult<DiscreteBayesNet> apply(DiscreteBayesNet seedNet, DiscreteData data, AbstractEM em) {
@@ -26,10 +40,15 @@ public class AddOlcmArc implements OlcmHcOperator{
         double bestModelScore = -Double.MAX_VALUE; // Log-likelihood related scores are negative
         LearningResult<DiscreteBayesNet> bestModelResult = null;
 
+        List<DiscreteBeliefNode> whiteListManifestNodes = clonedNet.getManifestNodes()
+                .stream()
+                .filter(x -> !this.manifestNodeBlackList.contains(x.getVariable()))
+                .collect(Collectors.toList());
+
         // Itera por cada variable latente y añade un arco entre ella y cada MV a la cual no tenga como hijo
         for(DiscreteBeliefNode latentNode : clonedNet.getLatentNodes()){
             // Filtramos los MVs que no sean hijos de la variable latente
-            for(DiscreteBeliefNode manifestNode: clonedNet.getManifestNodes().stream()
+            for(DiscreteBeliefNode manifestNode: whiteListManifestNodes.stream()
                     .filter(x->!latentNode.getChildrenNodes().contains(x))
                     .collect(Collectors.toList())){
 

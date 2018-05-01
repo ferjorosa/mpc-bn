@@ -16,7 +16,10 @@ import java.util.ArrayList;
  *
  * TODO: Falta la property que define si una variable es latente o manifest
  * TODO: Solo lee OBIF en formato "table"
+ *
+ * NOTA 26-04-2018: No lee bien las tablas, utilizar XMLBifReader en vez de el, aunque sea peor
  */
+@Deprecated
 public class OldBifFileReader {
 
     public static DiscreteBayesNet readOBif(String filePath)throws IOException {

@@ -1,0 +1,131 @@
+// estudios/synthetic/15MVs_v3/olcmHC/olcm_iter_1.obif
+// Produced at Tue Apr 24 15:47:34 CEST 2018
+network "olcm - egypt_15_v3" {
+}
+
+variable "MV_bank" {
+	type discrete[2] { "'1'" "'2'" };
+}
+
+variable "MV_other" {
+	type discrete[2] { "'1'" "'2'" };
+}
+
+variable "MV_nonbank" {
+	type discrete[2] { "'1'" "'2'" };
+}
+
+variable "MV_k15d" {
+	type discrete[2] { "'1'" "'2'" };
+}
+
+variable "MV_h1" {
+	type discrete[2] { "'1'" "'2'" };
+}
+
+variable "MV_h5" {
+	type discrete[2] { "'1'" "'2'" };
+}
+
+variable "MV_h3" {
+	type discrete[2] { "'1'" "'2'" };
+}
+
+variable "MV_mnaf3" {
+	type discrete[2] { "'1'" "'2'" };
+}
+
+variable "MV_mnaq53" {
+	type discrete[2] { "'1'" "'2'" };
+}
+
+variable "MV_e6" {
+	type discrete[2] { "'1'" "'2'" };
+}
+
+variable "MV_j30c" {
+	type discrete[5] { "'1'" "'2'" "'3'" "'4'" "'5'" };
+}
+
+variable "MV_d30b" {
+	type discrete[5] { "'1'" "'2'" "'3'" "'4'" "'5'" };
+}
+
+variable "MV_d30a" {
+	type discrete[5] { "'1'" "'2'" "'3'" "'4'" "'5'" };
+}
+
+variable "MV_l30a" {
+	type discrete[5] { "'1'" "'2'" "'3'" "'4'" "'5'" };
+}
+
+variable "MV_l30b" {
+	type discrete[5] { "'1'" "'2'" "'3'" "'4'" "'5'" };
+}
+
+variable "LV_variable243" {
+	type discrete[2] { "state0" "state1" };
+}
+
+variable "LV_variable16" {
+	type discrete[2] { "state0" "state1" };
+}
+
+variable "LV_variable98" {
+	type discrete[2] { "state0" "state1" };
+}
+
+probability ( "MV_bank" | "LV_variable16" ) {
+	table 0.9931534631189456 0.08251314699145319 0.006846536881054389 0.9174868530085468;
+}
+probability ( "MV_other" | "LV_variable16" ) {
+	table 0.9398894983876398 0.08058012069009092 0.06011050161236031 0.9194198793099091;
+}
+probability ( "MV_nonbank" | "LV_variable16" ) {
+	table 0.9639882479139009 0.0060683983282931305 0.036011752086099184 0.9939316016717068;
+}
+probability ( "MV_k15d"  ) {
+	table 0.04510108864696734 0.9548989113530326;
+}
+probability ( "MV_h1" | "LV_variable98" ) {
+	table 0.8756046794782129 0.0964324055781134 0.12439532052178708 0.9035675944218865;
+}
+probability ( "MV_h5"  ) {
+	table 0.1104199066874028 0.8895800933125972;
+}
+probability ( "MV_h3" | "LV_variable98" ) {
+	table 0.7561551888859842 0.06913899103212912 0.2438448111140158 0.9308610089678708;
+}
+probability ( "MV_mnaf3"  ) {
+	table 0.7729393468118196 0.22706065318818042;
+}
+probability ( "MV_mnaq53" | "LV_variable243" ) {
+	table 0.05819943531248968 0.03279553717685922 0.9418005646875103 0.9672044628231408;
+}
+probability ( "MV_e6"  ) {
+	table 0.07153965785381027 0.9284603421461898;
+}
+probability ( "MV_j30c"  ) {
+	table 0.5408902691511387 0.13923395445134576 0.14751552795031056 0.11542443064182195 0.056935817805383024;
+}
+probability ( "MV_d30b" | "LV_variable243" ) {
+	table 0.08580816506536149 0.8899785765260189 0.31343689819353704 0.04411592775897243 0.3296484177268166 0.03360627142260125 0.20149945859870255 0.01615177467877275 0.06960706041558223 0.016147449613634693;
+}
+probability ( "MV_d30a" | "LV_variable243" ) {
+	table 0.08570641229664686 0.6702824549842042 0.2979402189624495 0.1093334035089067 0.28880593964286816 0.10609454874545343 0.24794003397595213 0.0680479838347211 0.07960739512208342 0.04624160892671442;
+}
+probability ( "MV_l30a" | "LV_variable98" ) {
+	table 0.48860455043474266 0.6049635177070993 0.09558536187523872 0.12602319532645084 0.18978030082244085 0.13262783381513543 0.13082598455931707 0.10126812419416617 0.09520380230826064 0.03511732895714812;
+}
+probability ( "MV_l30b"  ) {
+	table 0.6138716356107661 0.14751552795031056 0.11387163561076605 0.08126293995859213 0.043478260869565216;
+}
+probability ( "LV_variable243"  ) {
+	table 0.2376619339622303 0.7623380660377697;
+}
+probability ( "LV_variable16"  ) {
+	table 0.08297528428284302 0.917024715717157;
+}
+probability ( "LV_variable98"  ) {
+	table 0.15303146002606527 0.8469685399739347;
+}

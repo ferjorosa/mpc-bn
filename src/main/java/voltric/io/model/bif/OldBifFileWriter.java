@@ -15,7 +15,10 @@ import java.util.Iterator;
  * Los archivos OBIF deberian acabar en .obif
  *
  * TODO: Falta la property que define si una variable es latente o manifest
+ *
+ * NOTA 26-04-2018: No lee bien las tablas, utilizar XMLBifReader en vez de el, aunque sea peor
  */
+@Deprecated
 public class OldBifFileWriter {
 
     public static void writeBif(String filePath, DiscreteBayesNet bayesNet)throws FileNotFoundException, UnsupportedEncodingException {

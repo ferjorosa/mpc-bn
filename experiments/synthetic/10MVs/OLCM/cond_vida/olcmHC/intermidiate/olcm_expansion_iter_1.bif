@@ -1,0 +1,159 @@
+network olcm - olcm10MVs_train_5000 {
+}
+
+variable hs160 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hs170 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hs180 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hs190 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hh040 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hs050 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hs060 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hh050 {
+	type discrete[2] { 1, 2 };
+}
+
+variable h79_u {
+	type discrete[2] { 1, 2 };
+}
+
+variable h80_u {
+	type discrete[2] { 1, 2 };
+}
+
+variable variable167 {
+	type discrete[2] { state0, state1 };
+}
+
+variable variable133 {
+	type discrete[2] { state0, state1 };
+}
+
+variable variable81 {
+	type discrete[2] { state0, state1 };
+}
+
+variable variable260 {
+	type discrete[2] { state0, state1 };
+}
+
+variable variable304 {
+	type discrete[2] { state0, state1 };
+}
+
+probability ( hs160 | variable167, variable81 ) {
+	(state0, state0) 0.250990011089676, 0.749009988910324;
+	(state0, state1) 0.1652025553185517, 0.8347974446814483;
+	(state1, state0) 0.08850546354284328, 0.9114945364571566;
+	(state1, state1) 0.01506552538663949, 0.9849344746133605;
+}
+
+probability ( hs170 | variable167, variable304 ) {
+	(state0, state0) 0.7195361666147386, 0.2804638333852613;
+	(state0, state1) 0.33271661107804756, 0.6672833889219525;
+	(state1, state0) 0.025565679247132454, 0.9744343207528675;
+	(state1, state1) 0.3480934254821865, 0.6519065745178134;
+}
+
+probability ( hs180 | variable167 ) {
+	(state0) 0.524141506611769, 0.4758584933882311;
+	(state1) 0.02725744288653129, 0.9727425571134687;
+}
+
+probability ( hs190 | variable167, variable81 ) {
+	(state0, state0) 0.6442217014455912, 0.3557782985544088;
+	(state0, state1) 0.38491512082778656, 0.6150848791722133;
+	(state1, state0) 0.10527484793806399, 0.8947251520619359;
+	(state1, state1) 0.05545802742181417, 0.9445419725781858;
+}
+
+probability ( hh040 | variable81, variable167, variable304 ) {
+	(state0, state0, state0) 0.5703066582935212, 0.42969334170647866;
+	(state0, state0, state1) 0.3852379451618537, 0.6147620548381464;
+	(state0, state1, state0) 0.30317876068097344, 0.6968212393190265;
+	(state0, state1, state1) 0.20876663276928067, 0.7912333672307192;
+	(state1, state0, state0) 0.238582795579834, 0.7614172044201659;
+	(state1, state0, state1) 0.5900840900307757, 0.4099159099692244;
+	(state1, state1, state0) 0.06968823945831094, 0.9303117605416891;
+	(state1, state1, state1) 0.2443013609658536, 0.7556986390341465;
+}
+
+probability ( hs050 | variable81, variable260, variable133 ) {
+	(state0, state0, state0) 0.2844596012494295, 0.7155403987505706;
+	(state0, state0, state1) 0.9773617254196699, 0.02263827458033009;
+	(state0, state1, state0) 0.5803797080561083, 0.4196202919438917;
+	(state0, state1, state1) 0.7993590244535166, 0.20064097554648347;
+	(state1, state0, state0) 0.9958572691816088, 0.004142730818391172;
+	(state1, state0, state1) 0.9989018889626189, 0.001098111037381144;
+	(state1, state1, state0) 0.9240354188058506, 0.07596458119414938;
+	(state1, state1, state1) 0.9765666103169935, 0.023433389683006404;
+}
+
+probability ( hs060 | variable81, variable260 ) {
+	(state0, state0) 0.061537780202704714, 0.9384622197972953;
+	(state0, state1) 0.13665931848559976, 0.8633406815144001;
+	(state1, state0) 0.8459447413339201, 0.15405525866607997;
+	(state1, state1) 0.15199920885434978, 0.8480007911456502;
+}
+
+probability ( hh050 | variable81, variable260, variable133 ) {
+	(state0, state0, state0) 0.06978048378905269, 0.9302195162109473;
+	(state0, state0, state1) 0.7590823734866782, 0.24091762651332185;
+	(state0, state1, state0) 0.3387803231171417, 0.6612196768828582;
+	(state0, state1, state1) 0.37818931889472024, 0.6218106811052798;
+	(state1, state0, state0) 0.9625777828115667, 0.03742221718843331;
+	(state1, state0, state1) 0.9895456304100455, 0.010454369589954491;
+	(state1, state1, state0) 0.602540903585289, 0.39745909641471094;
+	(state1, state1, state1) 0.8262521573677472, 0.1737478426322528;
+}
+
+probability ( h79_u | variable81 ) {
+	(state0) 0.5057256556675642, 0.49427434433243583;
+	(state1) 0.004426641680186939, 0.995573358319813;
+}
+
+probability ( h80_u | variable81 ) {
+	(state0) 0.2531653986700764, 0.7468346013299235;
+	(state1) 3.6814727775508096E-4, 0.9996318527222449;
+}
+
+probability ( variable167 ) {
+	table 0.13362235029650874, 0.8663776497034912;
+}
+
+probability ( variable133 ) {
+	table 0.21690507151092803, 0.7830949284890719;
+}
+
+probability ( variable81 ) {
+	table 0.1145954349985796, 0.8854045650014204;
+}
+
+probability ( variable260 ) {
+	table 0.8521512151690672, 0.14784878483093272;
+}
+
+probability ( variable304 ) {
+	table 0.8554956919307592, 0.14450430806924083;
+}
+

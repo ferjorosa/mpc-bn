@@ -1,0 +1,201 @@
+Run 1
+
+
+ 10 MVs Condiciones_vida data
+
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 2
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+-14560.488981689345
+iterations (1) score: -14560.489393818534
+Expansion score: -14560.489393818534
+Expansion score: -14386.594372261387
+Expansion score: -14308.251341423009
+Expansion score: -14249.999703547057
+Expansion score: -14205.997325850754
+Expansion score: -14181.967463195175
+Expansion score: -14172.709203276692
+Expansion score: -14166.365718585004
+Expansion score: -14163.728951540552
+Simplification score: -14163.728951540552
+iterations (1) score: -14517.48476007813
+Expansion score: -14517.48476007813
+Expansion score: -14308.06737484144
+Expansion score: -14168.405575421935
+Expansion score: -14120.642303500443
+Expansion score: -14112.595607806063
+Expansion score: -14101.8404667917
+Expansion score: -14097.71157837295
+Simplification score: -14097.71157837295
+iterations (1) score: -14124.31067423406
+Expansion score: -14124.31067423406
+iterations (1) score: -14656.961866261438
+Expansion score: -14656.961866261438
+Expansion score: -14418.723852419638
+Expansion score: -14193.43952653701
+Expansion score: -14167.707646036022
+Expansion score: -14151.62295603362
+Expansion score: -14134.599431697286
+Expansion score: -14128.639797186157
+Expansion score: -14124.35809184959
+Simplification score: -14124.35809184959
+iterations (1) score: -14154.701148436496
+Expansion score: -14154.701148436496
+Expansion score: -14137.98794664403
+Expansion score: -14130.795259274235
+Expansion score: -14130.25825722879
+Simplification score: -14130.25825722879
+iterations (1) score: -14120.444245679106
+Expansion score: -14120.444245679106
+Expansion score: -14112.549068910437
+Expansion score: -14108.715776735688
+Simplification score: -14108.715776735688
+Simplification score: -14097.71157837295
+iterations (1) score: -14089.063466878937
+Expansion score: -14089.063466878937
+iterations (1) score: -14610.071581211228
+Expansion score: -14610.071581211228
+Expansion score: -14357.462645136684
+Expansion score: -14134.81981217317
+Expansion score: -14126.245288601007
+Expansion score: -14121.972561399636
+Expansion score: -14116.26458031636
+Expansion score: -14108.560162897831
+Simplification score: -14108.560162897831
+iterations (1) score: -14108.612049082714
+Expansion score: -14108.612049082714
+iterations (1) score: -14415.744227726253
+Expansion score: -14415.744227726253
+Expansion score: -14360.77841965205
+Expansion score: -14328.767642964822
+Expansion score: -14176.922664763708
+Expansion score: -14127.30792710006
+Simplification score: -14127.30792710006
+Simplification score: -14080.115305681837
+iterations (1) score: -14075.856446322954
+Expansion score: -14075.856446322954
+iterations (1) score: -14610.071581211228
+Expansion score: -14610.071581211228
+Expansion score: -14357.46712786756
+Expansion score: -14134.829677008853
+Expansion score: -14126.245288601007
+Expansion score: -14122.00059977293
+Expansion score: -14116.258699483857
+Expansion score: -14108.586559364056
+Simplification score: -14108.586559364056
+iterations (1) score: -14108.632934387259
+Expansion score: -14108.632934387259
+iterations (1) score: -14379.394861914636
+Expansion score: -14379.394861914636
+Expansion score: -14360.778425337327
+Expansion score: -14309.300977616998
+Expansion score: -14176.922664764565
+Expansion score: -14127.219309745868
+Simplification score: -14127.219309745868
+Simplification score: -14075.856446322954
+iterations (1) score: -14605.812984615519
+Expansion score: -14605.812984615519
+Expansion score: -14353.210412132605
+Expansion score: -14130.570180625338
+Expansion score: -14121.929827250173
+Expansion score: -14117.716362286566
+Expansion score: -14111.988980880427
+Expansion score: -14104.231017736085
+Simplification score: -14104.231017736085
+iterations (1) score: -14104.31770785938
+Expansion score: -14104.31770785938
+iterations (1) score: -14375.085727638507
+Expansion score: -14375.085727638507
+Expansion score: -14366.661557301402
+Expansion score: -14305.044037678943
+Expansion score: -14172.634803936446
+Expansion score: -14123.058337906536
+Simplification score: -14123.058337906536
+iterations (2) score: -14075.856446322954
+Expansion score: -14075.856446322954
+Learning LL: -13892.736798642642
+Learning BIC: -14075.856446322954
+Learning time: 3990473.0 ms
+LL test score: -14236.131392180232
+BIC test score: -14419.251045795681

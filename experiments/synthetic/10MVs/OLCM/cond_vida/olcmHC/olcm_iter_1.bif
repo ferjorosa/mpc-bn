@@ -1,0 +1,115 @@
+network olcm - olcm10MVs_train_5000 {
+}
+
+variable hs160 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hs170 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hs180 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hs190 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hh040 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hs050 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hs060 {
+	type discrete[2] { 1, 2 };
+}
+
+variable hh050 {
+	type discrete[2] { 1, 2 };
+}
+
+variable h79_u {
+	type discrete[2] { 1, 2 };
+}
+
+variable h80_u {
+	type discrete[2] { 1, 2 };
+}
+
+variable variable167 {
+	type discrete[2] { state0, state1 };
+}
+
+variable variable133 {
+	type discrete[2] { state0, state1 };
+}
+
+variable variable81 {
+	type discrete[2] { state0, state1 };
+}
+
+probability ( hs160 ) {
+	table 0.04338264694122351, 0.9566173530587765;
+}
+
+probability ( hs170 | variable167 ) {
+	(state0) 0.6807543685605952, 0.3192456314394047;
+	(state1) 0.07615090902854121, 0.9238490909714588;
+}
+
+probability ( hs180 | variable167 ) {
+	(state0) 0.5588285352815588, 0.44117146471844115;
+	(state1) 0.02793115237644247, 0.9720688476235576;
+}
+
+probability ( hs190 | variable167 ) {
+	(state0) 0.45306591396374263, 0.5469340860362575;
+	(state1) 0.06136928833159465, 0.9386307116684054;
+}
+
+probability ( hh040 ) {
+	table 0.14374250299880048, 0.8562574970011996;
+}
+
+probability ( hs050 | variable133 ) {
+	(state0) 0.6026154080323358, 0.39738459196766424;
+	(state1) 0.9955186080728042, 0.004481391927195741;
+}
+
+probability ( hs060 | variable81 ) {
+	(state0) 0.045822848388219185, 0.9541771516117808;
+	(state1) 0.7280808588567687, 0.2719191411432314;
+}
+
+probability ( hh050 | variable133 ) {
+	(state0) 0.1600013675069444, 0.8399986324930555;
+	(state1) 0.9541309866126085, 0.045869013387391355;
+}
+
+probability ( h79_u | variable81 ) {
+	(state0) 0.6253240843329186, 0.3746759156670813;
+	(state1) 0.005622809726155652, 0.9943771902738444;
+}
+
+probability ( h80_u | variable81 ) {
+	(state0) 0.31749947783143373, 0.6825005221685664;
+	(state1) 5.691793815822254E-4, 0.9994308206184178;
+}
+
+probability ( variable167 ) {
+	table 0.1237791703745806, 0.8762208296254195;
+}
+
+probability ( variable133 ) {
+	table 0.05555493371525679, 0.9444450662847432;
+}
+
+probability ( variable81 ) {
+	table 0.09073123385507688, 0.909268766144923;
+}
+

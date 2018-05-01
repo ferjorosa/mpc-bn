@@ -1,32 +1,32 @@
-@RELATION d897_motor25
+@relation d897_motor25
 
-@ATTRIBUTE scm1rue {0,1,2,3}
-@ATTRIBUTE scm1lue {0,1,2,3}
-@ATTRIBUTE scm2rue {0,1,2,3}
-@ATTRIBUTE scm2lue {0,1,2,3}
-@ATTRIBUTE scm3rue {0,1,2,3}
-@ATTRIBUTE scm3lue {0,1,2,3}
-@ATTRIBUTE scm4rue {0,1,2,3}
-@ATTRIBUTE scm4lue {0,1,2,3}
-@ATTRIBUTE scm5rise {0,1,2,3}
-@ATTRIBUTE scm6post {0,1,2,3}
-@ATTRIBUTE scm7gait {0,1,2,3}
-@ATTRIBUTE scm8spee {0,1,2,3}
-@ATTRIBUTE scm9free {0,1,2,3}
-@ATTRIBUTE scm10swa {0,1,2,3}
-@ATTRIBUTE scm11spe {0,1,2,3}
-@ATTRIBUTE scm12fee {0,1,2,3}
-@ATTRIBUTE scm13dre {0,1,2,3}
-@ATTRIBUTE scm14hyg {0,1,2,3}
-@ATTRIBUTE scm15cha {0,1,2,3}
-@ATTRIBUTE scm16wal {0,1,2,3}
-@ATTRIBUTE scm17han {0,1,2,3}
-@ATTRIBUTE scm18dpr {0,1,2,3}
-@ATTRIBUTE scm19dsv {0,1,2,3}
-@ATTRIBUTE scm20fpr {0,1,2,3}
-@ATTRIBUTE scm21fsv {0,1,2,3}
+@attribute scm1rue {0,1,2,3}
+@attribute scm1lue {0,1,2,3}
+@attribute scm2rue {0,1,2,3}
+@attribute scm2lue {0,1,2,3}
+@attribute scm3rue {0,1,2,3}
+@attribute scm3lue {0,1,2,3}
+@attribute scm4rue {0,1,2,3}
+@attribute scm4lue {0,1,2,3}
+@attribute scm5rise {0,1,2,3}
+@attribute scm6post {0,1,2,3}
+@attribute scm7gait {0,1,2,3}
+@attribute scm8spee {0,1,2,3}
+@attribute scm9free {0,1,2,3}
+@attribute scm10swa {0,1,2,3}
+@attribute scm11spe {0,1,2,3}
+@attribute scm12fee {0,1,2,3}
+@attribute scm13dre {0,1,2,3}
+@attribute scm14hyg {0,1,2,3}
+@attribute scm15cha {0,1,2,3}
+@attribute scm16wal {0,1,2,3}
+@attribute scm17han {0,1,2,3}
+@attribute scm18dpr {0,1,2,3}
+@attribute scm19dsv {0,1,2,3}
+@attribute scm20fpr {0,1,2,3}
+@attribute scm21fsv {0,1,2,3}
 
-@DATA
+@data
 1,0,1,1,2,1,1,0,1,0,1,1,0,0,0,1,1,0,1,1,0,1,1,0,1
 1,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1
 1,1,0,1,1,1,2,0,1,1,0,2,1,0,1,1,2,1,1,2,0,1,0,1,2

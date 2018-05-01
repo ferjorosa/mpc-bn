@@ -96,6 +96,41 @@ public class OlcmHillClimbing {
         return previousIterationResult;
     }
 
+    public  LearningResult<DiscreteBayesNet> learnModel(DiscreteBayesNet seedNet, DiscreteData data, AbstractEM em) {
+
+        LearningResult<DiscreteBayesNet> previousIterationResult = em.learnModel(seedNet.clone(), data);
+
+        int iterations = 0;
+
+        // Bucle general que itera por las fases de expansin y simplificacion
+        while (iterations < this.maxIterations) {
+            iterations = iterations + 1;
+            System.out.println("iterations (" + iterations + ") score: " + previousIterationResult.getScoreValue());
+
+            /** Expansion process */
+            LearningResult<DiscreteBayesNet> expansionBestResult = expansionProcess(previousIterationResult, data, em);
+
+            // If the expansion process haven't increased the score, we stop the HC algorithm
+            if (previousIterationResult.getScoreValue() >= expansionBestResult.getScoreValue()
+                    || Math.abs(expansionBestResult.getScoreValue() - previousIterationResult.getScoreValue()) < threshold)
+                return previousIterationResult;
+
+            /** Simplification process */
+            LearningResult<DiscreteBayesNet> simplificationBestResult = simplificationProcess(expansionBestResult, data, em);
+
+            // If the simplification process haven't increased the score, we stop the HC algorithm
+            if (expansionBestResult.getScoreValue() >= simplificationBestResult.getScoreValue()
+                    || Math.abs(expansionBestResult.getScoreValue() - simplificationBestResult.getScoreValue()) < threshold)
+                return expansionBestResult;
+
+            // If both the expansion and simplification processes have improved the model's score, the model is stored in memory
+            previousIterationResult = simplificationBestResult;
+        }
+
+        // Si se ha pasado el maximo de iteraciones y segui mejorando el score, lo corto el HC y devuelvo el modelo
+        return previousIterationResult;
+    }
+
     private LearningResult<DiscreteBayesNet> expansionProcess (final LearningResult<DiscreteBayesNet> previousIterationResult, DiscreteData data, AbstractEM em) {
 
         LearningResult<DiscreteBayesNet> expansionBestResult = previousIterationResult;
@@ -138,21 +173,21 @@ public class OlcmHillClimbing {
 
     private void storeModel(DiscreteBayesNet model, String dataName, int iterationNumber) throws Exception{
         // Export model in BIF 0.15 format
-        OutputStream nbOutput = new FileOutputStream("estudios/"+dataName+"/olcmHC/olcm_iter_"+iterationNumber+".bif");
+        OutputStream nbOutput = new FileOutputStream(dataName+"/olcmHC/olcm_iter_"+iterationNumber+".bif");
         BnLearnBifFileWriter writer = new BnLearnBifFileWriter(nbOutput);
         writer.write(model);
 
         // Export model in OBIF format
-        OldBifFileWriter.writeBif("estudios/"+dataName+"/olcmHC/olcm_iter_"+iterationNumber+".obif", model);
+        //OldBifFileWriter.writeBif("estudios/"+dataName+"/olcmHC/olcm_iter_"+iterationNumber+".obif", model);
     }
 
     private void storeIntermidiateModel(DiscreteBayesNet model, String dataName, String process, int iterationNumber) throws Exception{
         // Export model in BIF 0.15 format
-        OutputStream nbOutput = new FileOutputStream("estudios/"+dataName+"/olcmHC/intermidiate/olcm_"+process+"_iter_"+iterationNumber+".bif");
+        OutputStream nbOutput = new FileOutputStream(dataName+"/olcmHC/intermidiate/olcm_"+process+"_iter_"+iterationNumber+".bif");
         BnLearnBifFileWriter writer = new BnLearnBifFileWriter(nbOutput);
         writer.write(model);
 
         // Export model in OBIF format
-        OldBifFileWriter.writeBif("estudios/"+dataName+"/olcmHC/intermidiate/olcm_"+process+"_iter_"+iterationNumber+".obif", model);
+        //OldBifFileWriter.writeBif("estudios/"+dataName+"/olcmHC/intermidiate/olcm_"+process+"_iter_"+iterationNumber+".obif", model);
     }
 }

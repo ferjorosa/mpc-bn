@@ -1,0 +1,5 @@
+Learning LL: -13892.736254512278
+Learning BIC: -14084.37308348414
+Learning time: 4288922.0 ms
+LL test score: -14236.13023931094
+BIC test score: -14427.767086117805
