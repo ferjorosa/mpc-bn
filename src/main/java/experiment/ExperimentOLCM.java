@@ -34,10 +34,18 @@ public class ExperimentOLCM {
         DiscreteData olcm10MVs_test = DataFileLoader.loadDiscreteData(olcm10MVs_test_string);
 
         /** 15 MVs synthetic parkinson data */
+        /*
         String olcm15MVs_parkinson_train_string = "experiments/synthetic/15MVs/data/olcm15MVs_parkinson_2_train_5000.arff";
         String olcm15MVs_parkinson_test_string = "experiments/synthetic/15MVs/data/olcm15MVs_parkinson_2_test_5000.arff";
         DiscreteData olcm15MVs_parkinson_train = DataFileLoader.loadDiscreteData(olcm15MVs_parkinson_train_string);
         DiscreteData olcm15MVs_parkinson_test = DataFileLoader.loadDiscreteData(olcm15MVs_parkinson_test_string);
+        */
+
+        /** 15 MVs synthetic parkinson data */
+        String olcm10MVs_parkinson_train_string = "experiments/synthetic/10MVs/data/olcm10MVs_parkinson_train_5000.arff";
+        String olcm10MVs_parkinson_test_string = "experiments/synthetic/10MVs/data/olcm10MVs_parkinson_test_5000.arff";
+        DiscreteData olcm10MVs_parkinson_train = DataFileLoader.loadDiscreteData(olcm10MVs_parkinson_train_string);
+        DiscreteData olcm10MVs_parkinson_test = DataFileLoader.loadDiscreteData(olcm10MVs_parkinson_test_string);
 
         /** 15 MVs synthetic egypt data */
         String olcm15MVs_egypt_train_string = "experiments/synthetic/15MVs/data/olcm15MVs_egypt_train_5000.arff";
@@ -53,12 +61,11 @@ public class ExperimentOLCM {
         while(currentRun <= nRuns) {
             System.out.println("Run " + currentRun + "\n");
 
-            learnCondVida(olcm10MVs_train, olcm10MVs_test, em, currentRun);
-            learnEgypt(olcm15MVs_egypt_train, olcm15MVs_egypt_test, em, currentRun);
-            learnParkinson(olcm15MVs_parkinson_train, olcm15MVs_parkinson_test, em, currentRun);
+            //learnCondVida(olcm10MVs_train, olcm10MVs_test, em, currentRun);
+            //learnEgypt(olcm15MVs_egypt_train, olcm15MVs_egypt_test, em, currentRun);
+            learnParkinson(olcm10MVs_parkinson_train, olcm10MVs_parkinson_test, em, currentRun);
 
             currentRun++;
-
         }
     }
 
@@ -89,11 +96,11 @@ public class ExperimentOLCM {
 
     private static void learnParkinson(DiscreteData parkinson_learn_data, DiscreteData parkinson_test_data, AbstractEM em, int currentRun) throws Exception {
 
-        System.out.println("\n 15 MVs Parkinson data \n");
+        System.out.println("\n 10 MVs Parkinson data \n");
 
         double initTime = System.currentTimeMillis();
         DiscreteBayesNet initialOLCM = HellingerFinder.find(parkinson_learn_data, em);
-        LearningResult<DiscreteBayesNet> olcm = apply6operators(initialOLCM, parkinson_learn_data, "experiments/synthetic/15MVs/OLCM/parkinson", em);
+        LearningResult<DiscreteBayesNet> olcm = apply6operators(initialOLCM, parkinson_learn_data, "experiments/synthetic/10MVs/OLCM/parkinson", em);
         double endTime = System.currentTimeMillis();
 
         System.out.println("Learning LL: " + LearningScore.calculateLogLikelihood(parkinson_learn_data, olcm.getBayesianNetwork()));
@@ -107,7 +114,7 @@ public class ExperimentOLCM {
         System.out.println("\n\n");
 
         // Export model in BIF 0.15 format
-        OutputStream nbOutput = new FileOutputStream("experiments/synthetic/15MVs/OLCM/parkinson/olcm_parkinson_run"+currentRun+".bif");
+        OutputStream nbOutput = new FileOutputStream("experiments/synthetic/10MVs/OLCM/parkinson/olcm_parkinson_run"+currentRun+".bif");
         BnLearnBifFileWriter writer = new BnLearnBifFileWriter(nbOutput);
         writer.write(olcm.getBayesianNetwork());
     }
