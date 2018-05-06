@@ -1,0 +1,135 @@
+Run 1
+
+
+ 10 MVs Parkinson data
+
+iterations: 1
+iterations: 2
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 2
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 2
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 2
+iterations: 3
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+-44296.326676933655
+iterations (1) score: -44296.32602027575
+Expansion score: -44296.32602027575
+Expansion score: -43855.00327367345
+Simplification score: -43855.00327367345
+iterations (1) score: -46828.26250684424
+Expansion score: -46828.26250684424
+iterations (1) score: -45817.509382679316
+Expansion score: -45817.509382679316
+iterations (1) score: -45300.31624776628
+Expansion score: -45300.31624776628
+Expansion score: -44081.8904013389
+Simplification score: -44081.8904013389
+iterations (1) score: -46721.079935002046
+Expansion score: -46721.079935002046
+iterations (1) score: -43776.68091831215
+Expansion score: -43776.68091831215
+Simplification score: -43776.68091831215
+iterations (1) score: -46750.828491292785
+Expansion score: -46750.828491292785
+iterations (1) score: -45740.63576134304
+Expansion score: -45740.63576134304
+iterations (1) score: -45703.549644146784
+Expansion score: -45703.549644146784
+iterations (1) score: -46644.50708062184
+Expansion score: -46644.50708062184
+iterations (2) score: -43776.68091831215
+Expansion score: -43776.68091831215
+Learning LL: -43316.75250853346
+Learning BIC: -43776.68091831215
+Learning time: 1.2669426E7 ms
+LL test score: -43421.27138436932
+BIC test score: -43881.1998167058

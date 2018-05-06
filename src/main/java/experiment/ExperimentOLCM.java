@@ -53,6 +53,22 @@ public class ExperimentOLCM {
         DiscreteData olcm15MVs_egypt_train = DataFileLoader.loadDiscreteData(olcm15MVs_egypt_train_string);
         DiscreteData olcm15MVs_egypt_test = DataFileLoader.loadDiscreteData(olcm15MVs_egypt_test_string);
 
+        /** 12 MVs real egypt data */
+        String olcm_egypt_12_train_string = "experiments/real/data/egypt_12.arff";
+        DiscreteData olcm_egypt_12_train = DataFileLoader.loadDiscreteData(olcm_egypt_12_train_string);
+
+        /** 12 MVs real egypt data V2*/
+        String olcm_egypt_12_V2_train_string = "experiments/real/data/egypt_12_v2.arff";
+        DiscreteData olcm_egypt_12_v2_train = DataFileLoader.loadDiscreteData(olcm_egypt_12_train_string);
+
+        /** 12 MVs real egypt data V3*/
+        String olcm_egypt_12_v3_train_string = "experiments/real/data/egypt_12_v3.arff";
+        DiscreteData olcm_egypt_12_v3_train = DataFileLoader.loadDiscreteData(olcm_egypt_12_train_string);
+
+        /** 12 MVs real cond_vida data */
+        String olcm_condVida_12_train_string = "experiments/real/data/cond_12.arff";
+        DiscreteData olcm_condVida_12_train = DataFileLoader.loadDiscreteData(olcm_egypt_12_train_string);
+
         AbstractEM em = new ParallelEM(new EmConfig(), ScoreType.BIC);
 
         int nRuns = 1;
@@ -63,8 +79,11 @@ public class ExperimentOLCM {
 
             //learnCondVida(olcm10MVs_train, olcm10MVs_test, em, currentRun);
             //learnEgypt(olcm15MVs_egypt_train, olcm15MVs_egypt_test, em, currentRun);
-            learnParkinson(olcm10MVs_parkinson_train, olcm10MVs_parkinson_test, em, currentRun);
-
+            //learnParkinson(olcm10MVs_parkinson_train, olcm10MVs_parkinson_test, em, currentRun);
+            //learnRealEgypt(olcm_egypt_12_train, em, currentRun);
+            learnRealCondVida(olcm_condVida_12_train, em, currentRun);
+            learnRealEgypt_v2(olcm_egypt_12_v2_train, em, currentRun);
+            learnRealEgypt_v3(olcm_egypt_12_v3_train, em, currentRun);
             currentRun++;
         }
     }
@@ -140,6 +159,78 @@ public class ExperimentOLCM {
 
         // Export model in BIF 0.15 format
         OutputStream nbOutput = new FileOutputStream("experiments/synthetic/10MVs/OLCM/cond_vida/olcm_cond_vida_run"+currentRun+".bif");
+        BnLearnBifFileWriter writer = new BnLearnBifFileWriter(nbOutput);
+        writer.write(olcm.getBayesianNetwork());
+    }
+
+    private static void learnRealEgypt(DiscreteData egypt_real_learn_data, AbstractEM em, int currentRun) throws Exception{
+        System.out.println("\n 12 MVs Real Egypt data \n");
+
+        double initTime = System.currentTimeMillis();
+        DiscreteBayesNet initialOLCM = HellingerFinder.find(egypt_real_learn_data, em);
+        LearningResult<DiscreteBayesNet> olcm = apply6operators(initialOLCM, egypt_real_learn_data, "experiments/real/OLCM/egypt", em);
+        double endTime = System.currentTimeMillis();
+
+        System.out.println("Learning LL: " + LearningScore.calculateLogLikelihood(egypt_real_learn_data, olcm.getBayesianNetwork()));
+        System.out.println("Learning BIC: "+ olcm.getScoreValue());
+        System.out.println("Learning time: "+ (endTime - initTime) + " ms");
+
+        // Export model in BIF 0.15 format
+        OutputStream nbOutput = new FileOutputStream("experiments/real/OLCM/egypt/olcm_egypt_run"+currentRun+".bif");
+        BnLearnBifFileWriter writer = new BnLearnBifFileWriter(nbOutput);
+        writer.write(olcm.getBayesianNetwork());
+    }
+
+    private static void learnRealEgypt_v2(DiscreteData egypt_real_learn_data, AbstractEM em, int currentRun) throws Exception{
+        System.out.println("\n 12 MVs Real Egypt data V2 \n");
+
+        double initTime = System.currentTimeMillis();
+        DiscreteBayesNet initialOLCM = HellingerFinder.find(egypt_real_learn_data, em);
+        LearningResult<DiscreteBayesNet> olcm = apply6operators(initialOLCM, egypt_real_learn_data, "experiments/real/OLCM/egypt_v2", em);
+        double endTime = System.currentTimeMillis();
+
+        System.out.println("Learning LL: " + LearningScore.calculateLogLikelihood(egypt_real_learn_data, olcm.getBayesianNetwork()));
+        System.out.println("Learning BIC: "+ olcm.getScoreValue());
+        System.out.println("Learning time: "+ (endTime - initTime) + " ms");
+
+        // Export model in BIF 0.15 format
+        OutputStream nbOutput = new FileOutputStream("experiments/real/OLCM/egypt_v2/olcm_egypt_v2_run"+currentRun+".bif");
+        BnLearnBifFileWriter writer = new BnLearnBifFileWriter(nbOutput);
+        writer.write(olcm.getBayesianNetwork());
+    }
+
+    private static void learnRealEgypt_v3(DiscreteData egypt_real_learn_data, AbstractEM em, int currentRun) throws Exception{
+        System.out.println("\n 12 MVs Real Egypt data V3 \n");
+
+        double initTime = System.currentTimeMillis();
+        DiscreteBayesNet initialOLCM = HellingerFinder.find(egypt_real_learn_data, em);
+        LearningResult<DiscreteBayesNet> olcm = apply6operators(initialOLCM, egypt_real_learn_data, "experiments/real/OLCM/egypt_v3", em);
+        double endTime = System.currentTimeMillis();
+
+        System.out.println("Learning LL: " + LearningScore.calculateLogLikelihood(egypt_real_learn_data, olcm.getBayesianNetwork()));
+        System.out.println("Learning BIC: "+ olcm.getScoreValue());
+        System.out.println("Learning time: "+ (endTime - initTime) + " ms");
+
+        // Export model in BIF 0.15 format
+        OutputStream nbOutput = new FileOutputStream("experiments/real/OLCM/egypt_v3/olcm_egypt_v3_run"+currentRun+".bif");
+        BnLearnBifFileWriter writer = new BnLearnBifFileWriter(nbOutput);
+        writer.write(olcm.getBayesianNetwork());
+    }
+
+    private static void learnRealCondVida(DiscreteData condVida_real_learn_data, AbstractEM em, int currentRun) throws Exception{
+        System.out.println("\n 12 MVs Real CondVida data \n");
+
+        double initTime = System.currentTimeMillis();
+        DiscreteBayesNet initialOLCM = HellingerFinder.find(condVida_real_learn_data, em);
+        LearningResult<DiscreteBayesNet> olcm = apply6operators(initialOLCM, condVida_real_learn_data, "experiments/real/OLCM/cond", em);
+        double endTime = System.currentTimeMillis();
+
+        System.out.println("Learning LL: " + LearningScore.calculateLogLikelihood(condVida_real_learn_data, olcm.getBayesianNetwork()));
+        System.out.println("Learning BIC: "+ olcm.getScoreValue());
+        System.out.println("Learning time: "+ (endTime - initTime) + " ms");
+
+        // Export model in BIF 0.15 format
+        OutputStream nbOutput = new FileOutputStream("experiments/real/OLCM/cond/olcm_condVida_run"+currentRun+".bif");
         BnLearnBifFileWriter writer = new BnLearnBifFileWriter(nbOutput);
         writer.write(olcm.getBayesianNetwork());
     }
