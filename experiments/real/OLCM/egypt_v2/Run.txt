@@ -1,0 +1,176 @@
+ 12 MVs Real Egypt data V2
+
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 2
+iterations: 1
+iterations: 1
+iterations: 2
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 2
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 2
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 2
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 2
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+-9056.247067102096
+iterations (1) score: -9056.259478708713
+Expansion score: -9056.259478708713
+Expansion score: -8911.938158692255
+Expansion score: -8853.952097920639
+Expansion score: -8802.712016362524
+Expansion score: -8782.72590227531
+Expansion score: -8767.299411869844
+Expansion score: -8755.746731667175
+Simplification score: -8755.746731667175
+iterations (1) score: -9319.38722156454
+Expansion score: -9319.38722156454
+Expansion score: -9064.100227337152
+Expansion score: -8820.31805865025
+Expansion score: -8809.156151215546
+Simplification score: -8809.156151215546
+iterations (1) score: -9259.002088678288
+Expansion score: -9259.002088678288
+Expansion score: -9170.807968702453
+Expansion score: -9025.3611689415
+Expansion score: -8885.136654784672
+Expansion score: -8784.620810268481
+Expansion score: -8773.568696464046
+Simplification score: -8773.568696464046
+iterations (1) score: -8806.778377794133
+Expansion score: -8806.778377794133
+Expansion score: -8791.375593996961
+Expansion score: -8779.325512293744
+Expansion score: -8773.568226141828
+Simplification score: -8773.568226141828
+Learning LL: -8615.82227625217
+Learning BIC: -8755.746731667175
+Learning time: 2989323.0 ms

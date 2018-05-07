@@ -1,0 +1,103 @@
+ 12 MVs Real Egypt data V3
+
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 1
+iterations: 2
+iterations: 1
+-17980.49719572547
+iterations (1) score: -17980.49720092102
+Expansion score: -17980.49720092102
+Expansion score: -17713.929394623112
+Expansion score: -17517.820469667044
+Expansion score: -17485.506525665947
+Expansion score: -17468.99561055993
+Expansion score: -17459.317174625226
+Expansion score: -17449.775602033456
+Expansion score: -17443.201084624136
+Expansion score: -17438.231115489518
+Expansion score: -17434.6333087427
+Simplification score: -17434.6333087427
+iterations (1) score: -17340.681884451635
+Expansion score: -17340.681884451635
+Expansion score: -17329.583200737503
+Expansion score: -17324.502687632907
+Simplification score: -17324.502687632907
+iterations (1) score: -17968.953529748604
+Expansion score: -17968.953529748604
+Expansion score: -17686.078526678222
+Expansion score: -17439.14532555521
+Expansion score: -17425.2475365916
+Simplification score: -17425.2475365916
+iterations (1) score: -17841.544375792764
+Expansion score: -17841.544375792764
+Expansion score: -17805.02301256694
+Expansion score: -17740.971845055672
+Expansion score: -17509.204239153823
+Expansion score: -17508.840760230287
+Simplification score: -17508.840760230287
+iterations (1) score: -17419.503844372197
+Expansion score: -17419.503844372197
+Expansion score: -17414.365070018637
+Expansion score: -17404.92359510764
+Expansion score: -17399.805635165878
+Simplification score: -17399.805635165878
+Simplification score: -17324.502687632907
+iterations (1) score: -17897.023262761737
+Expansion score: -17897.023262761737
+Expansion score: -17621.148522902462
+Expansion score: -17366.71033581268
+Simplification score: -17366.71033581268
+iterations (1) score: -17937.366012024402
+Expansion score: -17937.366012024402
+Expansion score: -17920.03382112601
+Expansion score: -17855.060051398817
+Expansion score: -17824.664463503934
+Expansion score: -17764.87080218224
+Expansion score: -17552.669094366767
+Expansion score: -17552.429117377866
+Simplification score: -17552.429117377866
+iterations (1) score: -17354.39740523143
+Expansion score: -17354.39740523143
+Expansion score: -17344.976481289348
+Simplification score: -17344.976481289348
+iterations (2) score: -17324.502687632907
+Expansion score: -17324.502687632907
+Learning LL: -16889.58880669907
+Learning BIC: -17324.502687632907
+Learning time: 2.4013441E7 ms
