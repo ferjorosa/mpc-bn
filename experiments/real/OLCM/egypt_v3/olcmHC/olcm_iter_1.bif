@@ -1,0 +1,110 @@
+network olcm - egypt_12_v3 {
+}
+
+variable j30a {
+	type discrete[5] { 1, 2, 3, 4, 5 };
+}
+
+variable d30b {
+	type discrete[5] { 1, 2, 3, 4, 5 };
+}
+
+variable j30f {
+	type discrete[5] { 1, 2, 3, 4, 5 };
+}
+
+variable l30b {
+	type discrete[5] { 1, 2, 3, 4, 5 };
+}
+
+variable j30e {
+	type discrete[5] { 1, 2, 3, 4, 5 };
+}
+
+variable e1 {
+	type discrete[3] { 1, 2, 3 };
+}
+
+variable mnal4c {
+	type discrete[3] { 1, 2, 3 };
+}
+
+variable bank {
+	type discrete[2] { 1, 2 };
+}
+
+variable nonbank {
+	type discrete[2] { 1, 2 };
+}
+
+variable other {
+	type discrete[2] { 1, 2 };
+}
+
+variable mnaq53 {
+	type discrete[2] { 1, 2 };
+}
+
+variable h7 {
+	type discrete[2] { 1, 2 };
+}
+
+variable variable1963 {
+	type discrete[2] { state0, state1 };
+}
+
+probability ( j30a ) {
+	table 0.3416149068322981, 0.16304347826086957, 0.2194616977225673, 0.18219461697722567, 0.09368530020703934;
+}
+
+probability ( d30b ) {
+	table 0.6992753623188406, 0.10817805383022774, 0.10403726708074534, 0.060041407867494824, 0.028467908902691512;
+}
+
+probability ( j30f ) {
+	table 0.17287784679089027, 0.09575569358178054, 0.15942028985507245, 0.25414078674948243, 0.31780538302277433;
+}
+
+probability ( l30b ) {
+	table 0.6138716356107661, 0.14751552795031056, 0.11387163561076605, 0.08126293995859213, 0.043478260869565216;
+}
+
+probability ( j30e ) {
+	table 0.03467908902691511, 0.045548654244306416, 0.11438923395445134, 0.33747412008281574, 0.46790890269151136;
+}
+
+probability ( e1 ) {
+	table 0.38860103626943004, 0.5305699481865285, 0.08082901554404145;
+}
+
+probability ( mnal4c ) {
+	table 0.7533678756476684, 0.030569948186528497, 0.21606217616580312;
+}
+
+probability ( bank | variable1963 ) {
+	(state0) 0.08251312277472138, 0.9174868772252787;
+	(state1) 0.9931534614270355, 0.006846538572964473;
+}
+
+probability ( nonbank | variable1963 ) {
+	(state0) 0.006068398044947549, 0.9939316019550524;
+	(state1) 0.9639879693043454, 0.03601203069565463;
+}
+
+probability ( other | variable1963 ) {
+	(state0) 0.08058009918342089, 0.9194199008165791;
+	(state1) 0.9398894820102458, 0.06011051798975422;
+}
+
+probability ( mnaq53 ) {
+	table 0.0383618455158113, 0.9616381544841887;
+}
+
+probability ( h7 ) {
+	table 0.06894764126490409, 0.931052358735096;
+}
+
+probability ( variable1963 ) {
+	table 0.9170246911617332, 0.08297530883826673;
+}
+

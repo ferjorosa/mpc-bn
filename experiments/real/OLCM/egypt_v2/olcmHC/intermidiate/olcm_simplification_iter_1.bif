@@ -1,0 +1,141 @@
+network olcm - egypt_12_v2 {
+}
+
+variable e1 {
+	type discrete[3] { 1, 2, 3 };
+}
+
+variable mnal4c {
+	type discrete[3] { 1, 2, 3 };
+}
+
+variable h1 {
+	type discrete[2] { 1, 2 };
+}
+
+variable h3 {
+	type discrete[2] { 1, 2 };
+}
+
+variable h4a {
+	type discrete[2] { 1, 2 };
+}
+
+variable h4b {
+	type discrete[2] { 1, 2 };
+}
+
+variable h7 {
+	type discrete[2] { 1, 2 };
+}
+
+variable h8 {
+	type discrete[2] { 1, 2 };
+}
+
+variable bank {
+	type discrete[2] { 1, 2 };
+}
+
+variable nonbank {
+	type discrete[2] { 1, 2 };
+}
+
+variable other {
+	type discrete[2] { 1, 2 };
+}
+
+variable mnaq53 {
+	type discrete[2] { 1, 2 };
+}
+
+variable variable1097 {
+	type discrete[2] { state0, state1 };
+}
+
+variable variable1164 {
+	type discrete[2] { state0, state1 };
+}
+
+variable variable1258 {
+	type discrete[2] { state0, state1 };
+}
+
+probability ( e1 | variable1258 ) {
+	(state0) 0.24963389863708255, 0.36825092712567875, 0.38211517423723873;
+	(state1) 0.3985750640512795, 0.5419991636906313, 0.05942577225808926;
+}
+
+probability ( mnal4c | variable1164 ) {
+	(state0) 0.8855946361615206, 0.014728193467910702, 0.09967717037056877;
+	(state1) 0.7231294467176822, 0.03467175723892266, 0.2421987960433952;
+}
+
+probability ( h1 | variable1164 ) {
+	(state0) 0.7080485023215677, 0.29195149767843226;
+	(state1) 0.10662262569544419, 0.8933773743045559;
+}
+
+probability ( h3 | variable1164 ) {
+	(state0) 0.7548886486371712, 0.24511135136282883;
+	(state1) 0.04558281227751738, 0.9544171877224825;
+}
+
+probability ( h4a | variable1164 ) {
+	(state0) 0.39145335515275315, 0.6085466448472469;
+	(state1) 0.03265390789324656, 0.9673460921067535;
+}
+
+probability ( h4b | variable1164 ) {
+	(state0) 0.4748024280119283, 0.5251975719880716;
+	(state1) 0.024263251488054336, 0.9757367485119457;
+}
+
+probability ( h7 | variable1258, variable1164 ) {
+	(state0, state0) 0.8981045572307641, 0.10189544276923601;
+	(state0, state1) 0.2463631461063818, 0.7536368538936181;
+	(state1, state0) 0.2343639486623626, 0.7656360513376373;
+	(state1, state1) 0.0024123068597365653, 0.9975876931402634;
+}
+
+probability ( h8 | variable1258, variable1164 ) {
+	(state0, state0) 0.9025695496250894, 0.09743045037491056;
+	(state0, state1) 0.5164423460138635, 0.48355765398613654;
+	(state1, state0) 0.2978926105982136, 0.7021073894017864;
+	(state1, state1) 0.0511125813682209, 0.9488874186317791;
+}
+
+probability ( bank | variable1097, variable1258 ) {
+	(state0, state0) 0.9233638319472895, 0.0766361680527104;
+	(state0, state1) 0.99260964258445, 0.007390357415550093;
+	(state1, state0) 0.5111780226056698, 0.48882197739433014;
+	(state1, state1) 0.05311390623743741, 0.9468860937625626;
+}
+
+probability ( nonbank | variable1097 ) {
+	(state0) 0.9703787116705291, 0.029621288329470846;
+	(state1) 0.00611425551210216, 0.9938857444878979;
+}
+
+probability ( other | variable1097 ) {
+	(state0) 0.9403799447323482, 0.05962005526765166;
+	(state1) 0.08109456031610059, 0.9189054396838995;
+}
+
+probability ( mnaq53 | variable1258 ) {
+	(state0) 0.22704541081398052, 0.7729545891860194;
+	(state1) 0.025304319294745685, 0.9746956807052544;
+}
+
+probability ( variable1097 ) {
+	table 0.08237831181921548, 0.9176216881807846;
+}
+
+probability ( variable1164 ) {
+	table 0.1814508384904528, 0.8185491615095472;
+}
+
+probability ( variable1258 ) {
+	table 0.06664537452567208, 0.933354625474328;
+}
+

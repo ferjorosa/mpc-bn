@@ -1,0 +1,132 @@
+network olcm - egypt_12_v2 {
+}
+
+variable e1 {
+	type discrete[3] { 1, 2, 3 };
+}
+
+variable mnal4c {
+	type discrete[3] { 1, 2, 3 };
+}
+
+variable h1 {
+	type discrete[2] { 1, 2 };
+}
+
+variable h3 {
+	type discrete[2] { 1, 2 };
+}
+
+variable h4a {
+	type discrete[2] { 1, 2 };
+}
+
+variable h4b {
+	type discrete[2] { 1, 2 };
+}
+
+variable h7 {
+	type discrete[2] { 1, 2 };
+}
+
+variable h8 {
+	type discrete[2] { 1, 2 };
+}
+
+variable bank {
+	type discrete[2] { 1, 2 };
+}
+
+variable nonbank {
+	type discrete[2] { 1, 2 };
+}
+
+variable other {
+	type discrete[2] { 1, 2 };
+}
+
+variable mnaq53 {
+	type discrete[2] { 1, 2 };
+}
+
+variable variable1097 {
+	type discrete[2] { state0, state1 };
+}
+
+variable variable1164 {
+	type discrete[2] { state0, state1 };
+}
+
+variable variable1258 {
+	type discrete[2] { state0, state1 };
+}
+
+probability ( e1 ) {
+	table 0.38860103626943004, 0.5305699481865285, 0.08082901554404145;
+}
+
+probability ( mnal4c ) {
+	table 0.7533678756476684, 0.030569948186528497, 0.21606217616580312;
+}
+
+probability ( h1 | variable1164 ) {
+	(state0) 0.6905088179755551, 0.30949118202444487;
+	(state1) 0.11943904157262851, 0.8805609584273715;
+}
+
+probability ( h3 | variable1164 ) {
+	(state0) 0.8947344445521368, 0.10526555544786315;
+	(state1) 0.028050743605536107, 0.971949256394464;
+}
+
+probability ( h4a | variable1164 ) {
+	(state0) 0.3702801004294886, 0.6297198995705113;
+	(state1) 0.04247792048384592, 0.9575220795161541;
+}
+
+probability ( h4b ) {
+	table 0.1057542768273717, 0.8942457231726283;
+}
+
+probability ( h7 | variable1258 ) {
+	(state0) 0.8436453150302111, 0.15635468496978888;
+	(state1) 0.024159278843621176, 0.9758407211563789;
+}
+
+probability ( h8 | variable1258 ) {
+	(state0) 0.8809549720186345, 0.11904502798136558;
+	(state1) 0.08610979769638348, 0.9138902023036165;
+}
+
+probability ( bank | variable1097 ) {
+	(state0) 0.08251314699145307, 0.9174868530085469;
+	(state1) 0.9931534631189456, 0.006846536881054386;
+}
+
+probability ( nonbank | variable1097 ) {
+	(state0) 0.006068398328293116, 0.9939316016717069;
+	(state1) 0.9639882479139007, 0.036011752086099164;
+}
+
+probability ( other | variable1097 ) {
+	(state0) 0.08058012069009085, 0.9194198793099092;
+	(state1) 0.9398894983876396, 0.060110501612360305;
+}
+
+probability ( mnaq53 | variable1258 ) {
+	(state0) 0.1914670403537278, 0.8085329596462723;
+	(state1) 0.029922902911355288, 0.9700770970886446;
+}
+
+probability ( variable1097 ) {
+	table 0.917024715717157, 0.08297528428284298;
+}
+
+probability ( variable1164 ) {
+	table 0.16865760764157442, 0.8313423923584256;
+}
+
+probability ( variable1258 ) {
+	table 0.054737836860713325, 0.9452621631392867;
+}
+
