@@ -26,7 +26,20 @@ public class XmlBifReader {
         doc.normalize();
 
         String bnName = buildName(doc, "XML-BIF net from " + file.getName());
-        List<DiscreteVariable> variables = buildVariables(doc);
+        List<DiscreteVariable> variables = buildVariables(doc, new ArrayList<>());
+        DiscreteBayesNet bn = buildStructure(doc, bnName, variables);
+
+        return bn;
+    }
+
+    public static DiscreteBayesNet processFile(File file, List<String> latentVariables) throws Exception{
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setValidating(true);
+        Document doc = factory.newDocumentBuilder().parse(file);
+        doc.normalize();
+
+        String bnName = buildName(doc, "XML-BIF net from " + file.getName());
+        List<DiscreteVariable> variables = buildVariables(doc, latentVariables);
         DiscreteBayesNet bn = buildStructure(doc, bnName, variables);
 
         return bn;
@@ -40,7 +53,21 @@ public class XmlBifReader {
         doc.normalize();
 
         String bnName = buildName(doc, "XML-BIF net from string");
-        List<DiscreteVariable> variables = buildVariables(doc);
+        List<DiscreteVariable> variables = buildVariables(doc, new ArrayList<>());
+        DiscreteBayesNet bn = buildStructure(doc, bnName, variables);
+
+        return bn;
+    }
+
+    public static DiscreteBayesNet processString(String bnXML, List<String> latentVariables) throws Exception{
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setValidating(true);
+        Document doc = factory.newDocumentBuilder().parse(
+                new org.xml.sax.InputSource(new StringReader(bnXML)));
+        doc.normalize();
+
+        String bnName = buildName(doc, "XML-BIF net from string");
+        List<DiscreteVariable> variables = buildVariables(doc, latentVariables);
         DiscreteBayesNet bn = buildStructure(doc, bnName, variables);
 
         return bn;
@@ -74,7 +101,7 @@ public class XmlBifReader {
      * @param doc DOM document containing BIF document in DOM tree
      * @throws Exception if building fails
      */
-    private static List<DiscreteVariable> buildVariables(Document doc) throws Exception{
+    private static List<DiscreteVariable> buildVariables(Document doc, List<String> latentVariables) throws Exception{
 
         // Get XML variables
         NodeList nodelist = selectAllVariables(doc);
@@ -109,7 +136,13 @@ public class XmlBifReader {
             }
             String sNodeName = ((CharacterData) (nodelist2.get(0).getFirstChild())).getData();
 
-            DiscreteVariable var = new DiscreteVariable(sNodeName, nomStrings, VariableType.MANIFEST_VARIABLE);
+            DiscreteVariable var;
+
+            if(latentVariables.contains(sNodeName))
+                 var = new DiscreteVariable(sNodeName, nomStrings, VariableType.LATENT_VARIABLE);
+            else
+                var = new DiscreteVariable(sNodeName, nomStrings, VariableType.MANIFEST_VARIABLE);
+
             variables.add(var);
         }
 

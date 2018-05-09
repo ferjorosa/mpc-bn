@@ -19,7 +19,7 @@ public class GenerateDataEAST {
         GenerateDataEAST.generate(dataVoltric, "estudios/synthetic/8MVs/data/olcm8MVs_5000.data");
     }
 
-    private static void generate(DiscreteData data, String filePathString) throws IOException{
+    public static void generate(DiscreteData data, String filePathString) throws IOException{
 
         FileWriter fw = new FileWriter(filePathString);
 

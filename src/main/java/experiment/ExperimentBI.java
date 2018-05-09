@@ -8,6 +8,8 @@ package experiment;
  * El tiempo de ejecucion no tiene en cuenta la fase EM, ya que  contamos con que este proceso se ha hecho en el BI
  *
  * Nota: Si de 5 ejecuciones del BI, todas las estructuras son iguales, no hago el proceso 25 veces, sino solo 5 (5_BI * 5_EM)
+ *
+ * TODO: Probar a cargar un BIF 0.1 con JBayes para intentar que no tengamos que hacer el modelo a mano
  */
 public class ExperimentBI {
 }
