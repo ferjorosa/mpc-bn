@@ -65,7 +65,7 @@ public class HellingerFinder {
                 // En el caso de que si exista un par de variables en el vector cuya NMI supere el threshold
                 } else {
                     HLCM best_lcm = formBestLCM(data, em, currentVariables, pairValues);
-                    double averageHellingerClusterDist = Hellinger.averageClusterDistances(best_lcm);
+                    double averageHellingerClusterDist = Hellinger.averageClusterDistancesLCM(best_lcm);
                     currentPartitionScores.put(best_lcm.getManifestVariables(), averageHellingerClusterDist);
                     currentPartitions.put(best_lcm.getManifestVariables(), best_lcm);
                     currentVariables.removeAll(best_lcm.getManifestVariables());
@@ -88,7 +88,7 @@ public class HellingerFinder {
                         currentVariables = new ArrayList<>();
                     } else {
                         HLCM best_lcm = formBestLCM(data, em, currentVariables, pairValues);
-                        double averageHellingerClusterDist = Hellinger.averageClusterDistances(best_lcm);
+                        double averageHellingerClusterDist = Hellinger.averageClusterDistancesLCM(best_lcm);
                         currentPartitionScores.put(best_lcm.getManifestVariables(), averageHellingerClusterDist);
                         currentPartitions.put(best_lcm.getManifestVariables(), best_lcm);
                         currentVariables.removeAll(best_lcm.getManifestVariables());
@@ -134,7 +134,7 @@ public class HellingerFinder {
                 DiscreteBeliefNode varNode = lcmCopy.addNode(variable);
                 Edge<Variable> newVarEdge = lcmCopy.addEdge(varNode, lcmCopy.getRoot());
                 HLCM lcmCopyWithVar = increaseAndDecreaseCardinality(data, em, lcmCopy);
-                double hellingerOfLcmCopyWithVar = Hellinger.averageClusterDistances(lcmCopyWithVar);
+                double hellingerOfLcmCopyWithVar = Hellinger.averageClusterDistancesLCM(lcmCopyWithVar);
 
                 double hellingerIncrease = hellingerOfLcmCopyWithVar - currentPartitionScores.get(oldManifestVariables);
                 if (hellingerIncrease > bestHellingerIncrease) {

@@ -1,6 +1,7 @@
 package voltric.util.distance;
 
 import org.apache.commons.math3.util.Combinations;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import voltric.inference.CliqueTreePropagation;
 import voltric.model.DiscreteBayesNet;
 import voltric.potential.Function;
@@ -15,8 +16,66 @@ import java.util.*;
  */
 public class Bhattacharyya {
 
-    public static double[][] clusterDistances(DiscreteBayesNet lcm) {
-        // TODO: Faltaria una comprobacion mas fuerte de que se trata de un LCM
+    public static List<double[][]> clusterDistances(DiscreteBayesNet mcm) {
+
+        List<double[][]> distanceMatrixes = new ArrayList<>();
+
+        for(DiscreteVariable latentVar: mcm.getLatentVariables()) {
+
+            // Inicializamos la matriz de distancias con 0s
+            double[][] distanceMatrix = new double[latentVar.getCardinality()][latentVar.getCardinality()];
+            for(int i = 0; i<latentVar.getCardinality(); i++)
+                for(int j = 0; j < latentVar.getCardinality(); j++)
+                    distanceMatrix[i][j] = 0;
+
+            // Creates a CliqueTreePropagation instance to do the inference
+            CliqueTreePropagation inferenceEngine = new CliqueTreePropagation(mcm);
+
+            // Local CPTs of the latent var's children
+            Function[][] localCPTs = new Function[latentVar.getCardinality()][mcm.getNode(latentVar).getChildrenNodes().size()]; // solo las MVs que son hijas directas de la LV
+
+            Map<DiscreteVariable, Integer> evidence = new HashMap<>();
+            for(int i = 0; i < latentVar.getCardinality(); i++) {
+                // Asignamos la evidencia con el valor de la variable de cluster
+                evidence.put(latentVar, i);
+                inferenceEngine.setEvidence(evidence);
+
+                // Propagamos la evidencia
+                inferenceEngine.propagate();
+
+                // Recogemos las CPTs marginales correspondientes a cada variable manifest que es hija de la latentVar
+                for (int j = 0; j < mcm.getNode(latentVar).getChildrenNodes().size(); j++)
+                    localCPTs[i][j] = inferenceEngine.computeBelief(mcm.getManifestVariables().get(j));
+            }
+
+            // Using Apache Math, create a set of index combinations of cluster pairs
+            Iterator<int[]> clusterPairCombinations = new Combinations(latentVar.getCardinality(), 2).iterator();
+
+            // Calculamos las distancias entre cada par de combinaciones
+            while(clusterPairCombinations.hasNext()){
+                // Indices de los clusters a comparar
+                int[] combination = clusterPairCombinations.next();
+                int c1 = combination[0]; // Index of the first cluster to compare
+                int c2 = combination[1]; // Index of the second cluster to compare
+
+                // Dado que tratamos con un modelo Naïve Bayes, la distribucion de probabilidad se factoriza como un producto de distribuciones marginales
+                // Iteramos por la matriz de distribuciones marginales (localCPTs)
+
+                // Esta distancia se calcula como el producto de las distancias marginales (ver formula)
+                double clusterDistance = 1;
+                for(int i = 0; i< mcm.getNode(latentVar).getChildrenNodes().size(); i++)
+                    clusterDistance *= distance(localCPTs[c1][i], localCPTs[c2][i]);
+
+                distanceMatrix[c1][c2] = clusterDistance;
+                distanceMatrix[c2][c1] = clusterDistance; // Symmetric
+            }
+            distanceMatrixes.add(distanceMatrix);
+        }
+        return distanceMatrixes;
+    }
+
+    public static double[][] clusterDistancesLCM(DiscreteBayesNet lcm) {
+        // TODO: Faltaria una comprobacion mas fuerte: de que se trata de un LCM
         if(lcm.getLatentVariables().size() != 1)
             throw new IllegalArgumentException("The BN has to be an LCM");
 
