@@ -8,6 +8,7 @@ import voltric.potential.Function;
 import voltric.variables.DiscreteVariable;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Calcula la distancia de Bhattacharyya entre dos listas de Function correspondientes a las CPTs dadas las los valores de la clase
@@ -31,8 +32,14 @@ public class Bhattacharyya {
             // Creates a CliqueTreePropagation instance to do the inference
             CliqueTreePropagation inferenceEngine = new CliqueTreePropagation(mcm);
 
+            // Children variables, they can be MVs or LVs (like the case of HLCMs)
+            List<DiscreteVariable> childrenVars = mcm.getNode(latentVar).getChildrenNodes()
+                    .stream()
+                    .map(x-> (DiscreteVariable) x.getContent())
+                    .collect(Collectors.toList());
+
             // Local CPTs of the latent var's children
-            Function[][] localCPTs = new Function[latentVar.getCardinality()][mcm.getNode(latentVar).getChildrenNodes().size()]; // solo las MVs que son hijas directas de la LV
+            Function[][] localCPTs = new Function[latentVar.getCardinality()][childrenVars.size()]; // solo las MVs que son hijas directas de la LV
 
             Map<DiscreteVariable, Integer> evidence = new HashMap<>();
             for(int i = 0; i < latentVar.getCardinality(); i++) {
@@ -43,9 +50,9 @@ public class Bhattacharyya {
                 // Propagamos la evidencia
                 inferenceEngine.propagate();
 
-                // Recogemos las CPTs marginales correspondientes a cada variable manifest que es hija de la latentVar
-                for (int j = 0; j < mcm.getNode(latentVar).getChildrenNodes().size(); j++)
-                    localCPTs[i][j] = inferenceEngine.computeBelief(mcm.getManifestVariables().get(j));
+                // Recogemos las CPTs marginales correspondientes a cada variable hija de la latente
+                for (int j = 0; j < childrenVars.size(); j++)
+                    localCPTs[i][j] = inferenceEngine.computeBelief(childrenVars.get(j));
             }
 
             // Using Apache Math, create a set of index combinations of cluster pairs
@@ -63,7 +70,7 @@ public class Bhattacharyya {
 
                 // Esta distancia se calcula como el producto de las distancias marginales (ver formula)
                 double clusterDistance = 1;
-                for(int i = 0; i< mcm.getNode(latentVar).getChildrenNodes().size(); i++)
+                for(int i = 0; i< childrenVars.size(); i++)
                     clusterDistance *= distance(localCPTs[c1][i], localCPTs[c2][i]);
 
                 distanceMatrix[c1][c2] = clusterDistance;

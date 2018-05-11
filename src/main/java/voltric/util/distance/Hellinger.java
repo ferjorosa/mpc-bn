@@ -1,6 +1,5 @@
 package voltric.util.distance;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import voltric.model.DiscreteBayesNet;
 
 import java.util.ArrayList;
@@ -13,6 +12,7 @@ import java.util.List;
 public class Hellinger {
 
 
+    // Cuando son HLCMs las hijas de una LV pueden ser del tipo manifest o latent, para calcular la distancia
     public static List<double[][]> clusterDistances(DiscreteBayesNet mcm) {
 
         List<double[][]> bhattacharyyaDistances = Bhattacharyya.clusterDistances(mcm);

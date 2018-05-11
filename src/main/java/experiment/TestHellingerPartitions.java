@@ -14,12 +14,13 @@ import java.util.List;
 public class TestHellingerPartitions {
 
     public static void main(String[] args) throws Exception {
-
+/*
         System.out.println("\n\n EAST average hellinger distances");
         List<Double> eastHellinger = east();
 
         for(Double d: eastHellinger)
             System.out.println(d + "\n");
+*/
 
 /*
         System.out.println("\n\n BI average hellinger distances");
@@ -29,13 +30,13 @@ public class TestHellingerPartitions {
             System.out.println(d + "\n");
 */
 
-/*
+
         System.out.println("\n\n OLHC average hellinger distances");
         List<Double> olhcHellinger = olhc();
 
         for(Double d: olhcHellinger)
             System.out.println(d + "\n");
-*/
+
 
 /*
         System.out.println("\n\n LCM average hellinger distance");
@@ -62,7 +63,7 @@ public class TestHellingerPartitions {
         latentVars.add("variable78");
 
         // Cargamos el modelo del cual vamos a calcular su matriz de distancias de Hellinger y su distancia media por particion
-        DiscreteBayesNet model = XmlBifReader.processFile(new File("OLHC_real_condvida_1.xml"), latentVars);
+        DiscreteBayesNet model = XmlBifReader.processFile(new File("BI_real_condvida_4.xml"), latentVars);
 
         return Hellinger.averageClusterDistances(model);
     }
@@ -71,8 +72,8 @@ public class TestHellingerPartitions {
         List<String> latentVars = new ArrayList<>();
         latentVars.add("variable26");
         latentVars.add("variable12");
+        latentVars.add("variable14");
         latentVars.add("variable24");
-        latentVars.add("variable16");
 
         // Cargamos el modelo del cual vamos a calcular su matriz de distancias de Hellinger y su distancia media por particion
         DiscreteBayesNet east_model = XmlBifReader.processFile(new File("EAST_real_condvida_2.xml"), latentVars);
