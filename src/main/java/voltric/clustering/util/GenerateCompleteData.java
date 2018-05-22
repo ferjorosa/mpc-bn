@@ -19,16 +19,16 @@ import java.util.Map;
  */
 public class GenerateCompleteData {
 
-    public DiscreteData generateUnidimensional(DiscreteData data, DiscreteBayesNet lcm) {
+    public static DiscreteData generateUnidimensional(DiscreteData dataSet, DiscreteBayesNet lcm) {
 
         if(lcm.getLatentVariables().size() > 1)
             throw new IllegalArgumentException("Solo se permite una variable latente en el modelo");
 
         Map<DiscreteDataInstance, Integer> completeDataMap = new HashMap<>();
-        List<SymmetricPair<DiscreteDataInstance, double[]>> clusterAssingments = AssignToClusters.assignDataCaseToCluster(data, lcm);
+        List<SymmetricPair<DiscreteDataInstance, double[]>> clusterAssingments = AssignToClusters.assignDataCaseToCluster(dataSet, lcm);
 
         // Inicializamos el Map
-        for(DiscreteDataInstance instance: data.getInstances())
+        for(DiscreteDataInstance instance: dataSet.getInstances())
             completeDataMap.put(instance, -1);
 
         // Transformamos las probabilidades de asignacin de cada instancia a un cluster por el indice del cluster con
@@ -51,7 +51,7 @@ public class GenerateCompleteData {
         // Una vez hemos asignado a cada instancia su cluster mas probable, generamos un objeto "DiscreteData" donde
         // se incluyan las variables de particion como variables observadas.
 
-        // Por cada variable latente correspondiente a una solución clustering, creamos una MV cuyo nombre coincide y que servirá para el nuevo DataSet
+        // Por cada variable latente creamos una MV cuyo nombre coincide y que servirá para el nuevo DataSet
         List<DiscreteVariable> observedPartitionVars = new ArrayList<>();
         for(DiscreteVariable partitionVar: lcm.getLatentVariables()){
             DiscreteVariable newManifestVar = new DiscreteVariable(partitionVar.getCardinality(), VariableType.MANIFEST_VARIABLE, partitionVar.getName());
@@ -60,7 +60,7 @@ public class GenerateCompleteData {
 
         // Creamos una nueva lista con todas las variables, primero las MVs y luego las LVs (ahora son MV tmb)
         List<DiscreteVariable> completedDataSetVars = new ArrayList<>();
-        completedDataSetVars.addAll(data.getVariables());
+        completedDataSetVars.addAll(dataSet.getVariables());
         completedDataSetVars.addAll(observedPartitionVars);
 
         // Creamos el dataSet completo que debemos rellenar con los valores de las LVs
@@ -68,7 +68,7 @@ public class GenerateCompleteData {
 
         // Añadimos las instancias correspondientes
         // Por cada instancia de los datos antiguos añadimos los valores de las MVs seguidos de las LVs
-        for(DiscreteDataInstance oldInstance: data.getInstances()){
+        for(DiscreteDataInstance oldInstance: dataSet.getInstances()){
             int[] oldData = oldInstance.getNumericValues();
             int latentVarData = completeDataMap.get(oldInstance);
             int[] newData = new int[oldData.length + 1];
@@ -79,14 +79,14 @@ public class GenerateCompleteData {
             newData[oldData.length] = latentVarData;
 
             // Add to the new completed data a new data instance containing both the MVs and the LVs
-            completedDataSet.add(new DiscreteDataInstance(newData), data.getWeight(oldInstance));
+            completedDataSet.add(new DiscreteDataInstance(newData), dataSet.getWeight(oldInstance));
         }
         return completedDataSet;
     }
 
-    public DiscreteData generateMultidimensional(DiscreteData data, DiscreteBayesNet mpm) {
+    public static DiscreteData generateMultidimensional(DiscreteData dataSet, DiscreteBayesNet mpm) {
         Map<DiscreteDataInstance, List<Integer>> completeDataMap = new HashMap<>();
-        List<SymmetricPair<DiscreteDataInstance, List<double[]>>> instancesWithPartitionProbs = AssignToClusters.assignDataCaseToClusters(data, mpm);
+        List<SymmetricPair<DiscreteDataInstance, List<double[]>>> instancesWithPartitionProbs = AssignToClusters.assignDataCaseToClusters(dataSet, mpm);
 
         // Transformamos las probabilidades de asignacin de cada instancia a un cluster por el indice del cluster con
         // mayor probabilidad y lo almacenamos
@@ -111,11 +111,41 @@ public class GenerateCompleteData {
             }
 
             // Enlazamos cada instancia con su lista de asignaciones para las particiones
-            completeDataMap.put(instanceWithPartitionProbs.getFirst(), partitionAssignments);
+            completeDataMap.put(instance, partitionAssignments);
         }
         // Una vez hemos asignado a cada instancia su cluster mas probable, generamos un objeto "DiscreteData" donde
         // se incluyan las variables de particion como variables observadas.
 
-        //TODO: Inspirandonos en el caso de una sola LV
+        // Por cada variable latente creamos una MV cuyo nombre coincide y que servirá para el nuevo DataSet
+        List<DiscreteVariable> observedPartitionVars = new ArrayList<>();
+        for(DiscreteVariable partitionVar: mpm.getLatentVariables()){
+            DiscreteVariable newManifestVar = new DiscreteVariable(partitionVar.getCardinality(), VariableType.MANIFEST_VARIABLE, partitionVar.getName());
+            observedPartitionVars.add(newManifestVar);
+        }
+
+        // Creamos una nueva lista con todas las variables, primero las MVs y luego las LVs (ahora son MV tmb)
+        List<DiscreteVariable> completedDataSetVars = new ArrayList<>();
+        completedDataSetVars.addAll(dataSet.getVariables());
+        completedDataSetVars.addAll(observedPartitionVars);
+
+        // Creamos el dataSet completo que debemos rellenar con los valores de las LVs
+        DiscreteData completedDataSet = new DiscreteData(completedDataSetVars);
+
+        // Añadimos las instancias correspondientes
+        // Por cada instancia de los datos antiguos añadimos los valores de las MVs seguidos de las LVs
+        for(DiscreteDataInstance oldInstance: dataSet.getInstances()){
+            int[] oldData = oldInstance.getNumericValues();
+            List<Integer> latentVarData = completeDataMap.get(oldInstance);
+            int[] newData = new int[oldData.length + latentVarData.size()];
+            for(int i = 0; i < oldData.length; i++)
+                newData[i] = oldData[i];
+            // Despues las LVs
+            for(int i = 0; i < latentVarData.size(); i++)
+                newData[i+oldData.length] = latentVarData.get(i);
+
+            // Add to the new completed data a new data instance containing both the MVs and the LVs
+            completedDataSet.add(new DiscreteDataInstance(newData), dataSet.getWeight(oldInstance));
+        }
+        return completedDataSet;
     }
 }
