@@ -14,21 +14,21 @@ import java.util.List;
 public class TestHellingerPartitions {
 
     public static void main(String[] args) throws Exception {
-/*
+
         System.out.println("\n\n EAST average hellinger distances");
         List<Double> eastHellinger = east();
 
         for(Double d: eastHellinger)
             System.out.println(d + "\n");
-*/
 
-/*
+
+
         System.out.println("\n\n BI average hellinger distances");
         List<Double> biHellinger = bi();
 
         for(Double d: biHellinger)
             System.out.println(d + "\n");
-*/
+
 
 
         System.out.println("\n\n OLHC average hellinger distances");
@@ -38,12 +38,12 @@ public class TestHellingerPartitions {
             System.out.println(d + "\n");
 
 
-/*
+
         System.out.println("\n\n LCM average hellinger distance");
         double lcmHellinger = lcm();
         System.out.println(lcmHellinger + "\n");
 
-*/
+
     }
 
     private static double lcm() throws Exception {
