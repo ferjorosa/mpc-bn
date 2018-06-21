@@ -276,7 +276,7 @@ public class DirectedNode<T> extends AbstractNode<T> {
      */
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(2, 5)
+        return new HashCodeBuilder(97, 5)
                 .append(content)
                 .append(graph.uniqueID)
                 .toHashCode();

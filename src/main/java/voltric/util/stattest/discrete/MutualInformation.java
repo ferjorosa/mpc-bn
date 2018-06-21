@@ -1,6 +1,7 @@
 package voltric.util.stattest.discrete;
 
 import voltric.data.DiscreteData;
+import voltric.potential.Function;
 import voltric.util.information.mi.MI;
 import voltric.variables.DiscreteVariable;
 
@@ -64,5 +65,10 @@ public class MutualInformation implements DiscreteStatisticalTest {
     @Override
     public double computeConditional(List<DiscreteVariable> x, List<DiscreteVariable> y, List<DiscreteVariable> condVars, DiscreteData data) {
         return MI.computeConditional(x, y, condVars, data);
+    }
+
+    @Override
+    public double computeConditional(Function dist, DiscreteVariable condVar) {
+        return MI.computeConditional(dist, condVar);
     }
 }

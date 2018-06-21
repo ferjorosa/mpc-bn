@@ -3,6 +3,7 @@ package voltric.util.information.mi;
 import voltric.data.DiscreteData;
 import voltric.inference.CliqueTreePropagation;
 import voltric.model.DiscreteBayesNet;
+import voltric.potential.Function;
 import voltric.util.information.entropy.BnFactorizationEntropy;
 import voltric.util.information.mi.normalization.NormalizationFactor;
 import voltric.variables.DiscreteVariable;
@@ -82,6 +83,7 @@ public class NMI {
     }
 
     /********************************************** BN INFERENCE **************************************************/
+
     public static double computePairwise(CliqueTreePropagation xCtp, CliqueTreePropagation yCtp, CliqueTreePropagation xyCtp, DiscreteData data, NormalizationFactor normalizationFactor) {
         double mi = BnInferenceMI.computePairwise(xCtp, yCtp, xyCtp, data);
         return normalizationFactor.normalizeMI(mi, xCtp, yCtp, xyCtp, data);

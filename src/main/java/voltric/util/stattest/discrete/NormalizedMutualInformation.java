@@ -1,6 +1,8 @@
 package voltric.util.stattest.discrete;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import voltric.data.DiscreteData;
+import voltric.potential.Function;
 import voltric.util.information.mi.NMI;
 import voltric.util.information.mi.normalization.NormalizationFactor;
 import voltric.variables.DiscreteVariable;
@@ -68,5 +70,10 @@ public class NormalizedMutualInformation implements DiscreteStatisticalTest {
     @Override
     public double computeConditional(List<DiscreteVariable> x, List<DiscreteVariable> y, List<DiscreteVariable> condVars, DiscreteData data) {
         return NMI.computeConditional(x, y, condVars, data, this.normalizationFactor);
+    }
+
+    @Override
+    public double computeConditional(Function dist, DiscreteVariable condVar) {
+        throw new NotImplementedException();
     }
 }

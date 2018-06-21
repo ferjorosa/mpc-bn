@@ -50,7 +50,7 @@ public class GeneralHillClimbing implements DiscreteStructureLearning{
         while(iterations < this.maxIterations){
             iterations = iterations + 1;
 
-            System.out.println("iterations: "+ iterations);
+            //System.out.println("iterations: "+ iterations);
 
             // Iteration thourgh all the operators, where Associated BN with the best score is stored
             for(HcOperator operator : this.operators){

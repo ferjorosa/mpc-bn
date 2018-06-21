@@ -1,6 +1,7 @@
 package voltric.util.stattest.discrete;
 
 import voltric.data.DiscreteData;
+import voltric.potential.Function;
 import voltric.variables.DiscreteVariable;
 
 import java.util.List;
@@ -28,4 +29,6 @@ public interface DiscreteStatisticalTest {
     double computeConditional(DiscreteVariable x, DiscreteVariable y, List<DiscreteVariable> condVars, DiscreteData data);
 
     double computeConditional(List<DiscreteVariable> x, List<DiscreteVariable> y, List<DiscreteVariable> condVars, DiscreteData data);
+
+    double computeConditional(Function dist, DiscreteVariable condVar);
 }

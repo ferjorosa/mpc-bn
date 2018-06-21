@@ -1,0 +1,80 @@
+Run 1
+
+
+
+LCM:
+
+Learning LL: -19455.287186410424
+Learning BIC: -21002.505822226805
+Learning time: 186693.0 ms
+
+
+TAN:
+
+Learning LL: -22769.75825613431
+Learning BIC: -22691.081224217403
+Learning time: 79952.0 ms
+Run 2
+
+
+
+LCM:
+
+Learning LL: -19456.84146533176
+Learning BIC: -21001.194685862778
+Learning time: 150867.0 ms
+
+
+TAN:
+
+ºLearning LL: -20750.33303699944
+Learning BIC: -22732.25786071445
+Learning time: 105159.0 ms
+Run 3
+
+
+
+LCM:
+
+Learning LL: -19455.720613608464
+Learning BIC: -21005.73579700578
+Learning time: 158212.0 ms
+
+
+TAN:
+
+Learning LL: -20331.981315038058
+Learning BIC: -22313.906149058774
+Learning time: 99083.0 ms
+Run 4
+
+
+
+LCM:
+
+Learning LL: -19455.28677501235
+Learning BIC: -21005.900506416605
+Learning time: 153201.0 ms
+
+
+TAN:
+
+Learning LL: -20800.47695866251
+Learning BIC: -22782.401742452643
+Learning time: 115333.0 ms
+Run 5
+
+
+
+LCM:
+
+Learning LL: -19455.026732982296
+Learning BIC: -21001.90396108065
+Learning time: 162939.0 ms
+
+
+TAN:
+
+Learning LL: -23619.00619294848
+Learning BIC: -22445.19773289414
+Learning time: 87271.0 ms

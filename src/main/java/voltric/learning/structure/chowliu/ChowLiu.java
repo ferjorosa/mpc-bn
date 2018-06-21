@@ -3,15 +3,14 @@ package voltric.learning.structure.chowliu;
 import voltric.data.DiscreteData;
 import voltric.graph.UndirectedNode;
 import voltric.graph.weighted.WeightedUndirectedGraph;
+import voltric.inference.CliqueTreePropagation;
 import voltric.model.DiscreteBayesNet;
+import voltric.potential.Function;
 import voltric.util.SymmetricPair;
 import voltric.util.stattest.discrete.DiscreteStatisticalTest;
 import voltric.variables.DiscreteVariable;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Este algoritmo deberia funcionar tanto para LVs como para MVs. Para comprobar su eficacia, voy a poner un metodo
@@ -25,6 +24,7 @@ public class ChowLiu {
     // Este se utiliza en el Flat-LTM
     // TODO: Dado que el CL tree es no-dirigido, el statistical test deberia ser simétrico
     // TODO: NO PERMITE (DE MOMENTO) VARIABLES LATENTES, rehacerlo de forma similar a StatelessEmpDist
+    @Deprecated
     public static WeightedUndirectedGraph<DiscreteVariable> learnChowLiuTree(List<DiscreteVariable> variables,
                                                                              DiscreteBayesNet bayesNet,
                                                                              DiscreteData dataSet,
@@ -72,6 +72,7 @@ public class ChowLiu {
     // Este se utiliza en el TAN
     // TODO: Comprobar, sobretodo la generacion de la distribucion conjunta
     // TODO: Dado que el CL tree es no-dirigido, el statistical test deberia ser simétrico
+    @Deprecated
     public static WeightedUndirectedGraph<DiscreteVariable> learnChowLiuTree(List<DiscreteVariable> variables,
                                                                              DiscreteVariable conditioningVar,
                                                                              DiscreteBayesNet bayesNet,
@@ -119,6 +120,61 @@ public class ChowLiu {
          * 2 - Creamos un grafo completo y despues aplicamos el algoritmo de Prim para obtener el MaxWST
          */
         WeightedUndirectedGraph<DiscreteVariable> completeGraph = createCompleteGraph(pairScores, variables);
+        Random randomGenerator = new Random();
+        UndirectedNode<DiscreteVariable> startNode = completeGraph.getUndirectedNodes().get(randomGenerator.nextInt(completeGraph.getNumberOfNodes()));
+        return completeGraph.maximumWeightSpanningTree(startNode);
+    }
+
+    public static WeightedUndirectedGraph<DiscreteVariable> learnTrueChowLiuTree(List<DiscreteVariable> manifestVariables,
+                                                                                 DiscreteVariable conditioningVar,
+                                                                                 DiscreteBayesNet bayesNet,
+                                                                                 DiscreteData dataSet,
+                                                                                 DiscreteStatisticalTest statisticalTest){
+        for(DiscreteVariable variable: manifestVariables)
+            if(!bayesNet.containsVar(variable))
+                throw new IllegalArgumentException("All the variables need to belong to the Bayes net");
+
+        for(DiscreteVariable variable: manifestVariables)
+            if(variable.isManifestVariable() && !dataSet.getVariables().contains(variable))
+                throw new IllegalArgumentException("All manifest variables need to be part of the DataSet");
+
+        if(!bayesNet.containsVar(conditioningVar))
+            throw new IllegalArgumentException("The conditioning variable must belong to the Bayes net");
+
+        if(manifestVariables.contains(conditioningVar))
+            throw new IllegalArgumentException("The conditioning variable cannot form part of the variables collection");
+
+        /** Preparamos la inferencia y propagamos la evidencia (en este caso no hay pero es necesario llamar al metodo) */
+        CliqueTreePropagation inferenceEngine = new CliqueTreePropagation(bayesNet);
+        inferenceEngine.propagate();
+
+        Map<SymmetricPair<DiscreteVariable,DiscreteVariable>,Double> pairScores = new HashMap<>();
+
+        int nVars = manifestVariables.size();
+
+        // enumerate all variables
+        for (int i = 0; i < nVars; i++) {
+            DiscreteVariable vi = manifestVariables.get(i);
+            for (int j = i + 1; j < nVars; j++) {
+                DiscreteVariable vj = manifestVariables.get(j);
+                SymmetricPair<DiscreteVariable, DiscreteVariable> variablePair = new SymmetricPair<>(vi, vj);
+                List<DiscreteVariable> jointDistVars = new ArrayList<>();
+                jointDistVars.add(vi);
+                jointDistVars.add(vj);
+                jointDistVars.add(conditioningVar);
+
+                /** Calculamos la conjunta de las tres variables "vi", "vj" y "conditioningVar" */
+                Function dist = inferenceEngine.computeBelief(jointDistVars);
+
+                /** Calculamos el CMI or CNMI, etc (el correspondiente segun el statisticalTest) */
+                double conditionalValue = statisticalTest.computeConditional(dist, conditioningVar);
+
+                pairScores.put(variablePair, conditionalValue);
+            }
+        }
+
+        /** 2 - Creamos un grafo completo y despues aplicamos el algoritmo de Prim para obtener el MaxWST */
+        WeightedUndirectedGraph<DiscreteVariable> completeGraph = createCompleteGraph(pairScores, manifestVariables);
         Random randomGenerator = new Random();
         UndirectedNode<DiscreteVariable> startNode = completeGraph.getUndirectedNodes().get(randomGenerator.nextInt(completeGraph.getNumberOfNodes()));
         return completeGraph.maximumWeightSpanningTree(startNode);

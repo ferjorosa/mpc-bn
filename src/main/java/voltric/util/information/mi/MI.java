@@ -3,6 +3,7 @@ package voltric.util.information.mi;
 import voltric.data.DiscreteData;
 import voltric.inference.CliqueTreePropagation;
 import voltric.model.DiscreteBayesNet;
+import voltric.potential.Function;
 import voltric.variables.DiscreteVariable;
 
 import java.util.ArrayList;
@@ -59,6 +60,12 @@ public class MI {
 
     public static double computePairwise(CliqueTreePropagation xCtp, CliqueTreePropagation yCtp, CliqueTreePropagation xyCtp, DiscreteData data) {
         return BnInferenceMI.computePairwise(xCtp, yCtp, xyCtp, data);
+    }
+
+    /** Using the JointDistribution method */
+
+    public static double computeConditional(Function dist, DiscreteVariable condVar) {
+        return JointDistributionMI.computeConditional(dist, condVar);
     }
 
     /**********************************************************/
