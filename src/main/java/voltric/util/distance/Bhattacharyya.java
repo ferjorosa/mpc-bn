@@ -19,6 +19,10 @@ public class Bhattacharyya {
 
     public static List<double[][]> clusterDistances(DiscreteBayesNet mcm) {
 
+        if(mcm.getManifestNodes().stream().flatMap(x->x.getDiscreteParentVariables().stream()).filter(y->y.isManifestVariable()).count() > 0)
+            // Por ahora solo esta hecho bajo al asumcion de que las variables son condicionalmente independientes
+            throw new NotImplementedException();
+
         List<double[][]> distanceMatrixes = new ArrayList<>();
 
         for(DiscreteVariable latentVar: mcm.getLatentVariables()) {
@@ -68,7 +72,7 @@ public class Bhattacharyya {
                 // Dado que tratamos con un modelo Naïve Bayes, la distribucion de probabilidad se factoriza como un producto de distribuciones marginales
                 // Iteramos por la matriz de distribuciones marginales (localCPTs)
 
-                // Esta distancia se calcula como el producto de las distancias marginales (ver formula)
+                // Esta distancia se calcula como el producto de las distancias marginales cuando no existen arcos entre (ver formula)
                 double clusterDistance = 1;
                 for(int i = 0; i< childrenVars.size(); i++)
                     clusterDistance *= distance(localCPTs[c1][i], localCPTs[c2][i]);
@@ -85,6 +89,10 @@ public class Bhattacharyya {
         // TODO: Faltaria una comprobacion mas fuerte: de que se trata de un LCM
         if(lcm.getLatentVariables().size() != 1)
             throw new IllegalArgumentException("The BN has to be an LCM");
+
+        if(lcm.getManifestNodes().stream().flatMap(x->x.getDiscreteParentVariables().stream()).filter(y->y.isManifestVariable()).count() > 0)
+            // Por ahora solo esta hecho bajo al asumcion de que las variables son condicionalmente independientes
+            throw new NotImplementedException();
 
         // Obtenemos la raiz del modelo Naïve Bayes
         DiscreteVariable root = lcm.getLatentVariables().get(0);
