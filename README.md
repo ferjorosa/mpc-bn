@@ -1,6 +1,3 @@
 # mpc-bn
-Multi-partition clustering with Bayesian networks
 
-Este proyecto contiene codigo de la version de generar facetas con Markov Blanket asi como el codigo utilizado para el PGM 2018
-
-A fecha 15/11/2018 voy a intentar mover la mayor parte a un proyecto nuevo o a Voltric
+This is the code repository of the paper [Discrete model-based clustering with overlapping subsets of attributes](http://proceedings.mlr.press/v72/rodriguez-sanchez18a/rodriguez-sanchez18a.pdf) (PGM 2018).
